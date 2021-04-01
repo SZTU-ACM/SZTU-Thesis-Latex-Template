@@ -89,6 +89,8 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 \RequirePackage{algorithm}
 % 获取总页数
 \RequirePackage{lastpage}
+% 控制元素编号与章节的关系
+\RequirePackage{chngcntr}
 
 % 参考文献格式 GBT7714-2005
 % 来自https://github.com/CTeX-org/gbt7714-bibtex-style
@@ -210,13 +212,13 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
         {
             \zihao{3} \heiti
             \begin{tabular}{ll}
-                \makebox[5em][s]{题目：}      & \parbox[t]{14em}{\bfseries \uline{\centering \@titlecn \hfill}} \\
-                \makebox[5em][s]{姓名：}      & \parbox[t]{14em}{\bfseries \uline{\centering \hfill \@author \hfill}}\\        
-                \makebox[5em][s]{专业：}      & \parbox[t]{14em}{\bfseries \uline{\centering \hfill \@priormajor \hfill}}\\
-                \makebox[5em][s]{学院：}      & \parbox[t]{14em}{\bfseries \uline{\centering \hfill \@department \hfill}}\\
-                \makebox[5em][s]{学号：}      & \parbox[t]{14em}{\bfseries \uline{\centering \hfill \@studentid \hfill}}\\
-                \makebox[5em][s]{指导教师：}  & \parbox[t]{14em}{\bfseries \uline{\centering \hfill \@supervisor \hfill}}\\
-                \makebox[5em][s]{职称：}      & \parbox[t]{14em}{\bfseries \uline{\centering \hfill \@supervisortitle \hfill}}\\
+                \makebox[5em][s]{题目：}      & \parbox[t]{14em}{\bfseries \kaishu \uline{\centering \@titlecn \hfill}} \\
+                \makebox[5em][s]{姓名：}      & \parbox[t]{14em}{\bfseries \kaishu \uline{\centering \hfill \@author \hfill}}\\        
+                \makebox[5em][s]{专业：}      & \parbox[t]{14em}{\bfseries \kaishu \uline{\centering \hfill \@priormajor \hfill}}\\
+                \makebox[5em][s]{学院：}      & \parbox[t]{14em}{\bfseries \kaishu \uline{\centering \hfill \@department \hfill}}\\
+                \makebox[5em][s]{学号：}      & \parbox[t]{14em}{\bfseries \kaishu \uline{\centering \hfill \@studentid \hfill}}\\
+                \makebox[5em][s]{指导教师：}  & \parbox[t]{14em}{\bfseries \kaishu \uline{\centering \hfill \@supervisor \hfill}}\\
+                \makebox[5em][s]{职称：}      & \parbox[t]{14em}{\bfseries \kaishu \uline{\centering \hfill \@supervisortitle \hfill}}\\
             \end{tabular}
         }
         \par
@@ -429,6 +431,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 \DeclareCaptionFont{song}{\songti}
 \DeclareCaptionFont{sfive}{\zihao{-5}}
 % \renewcommand{\thefigure}{\arabic{section}-\arabic{figure}}
+
 
 
 \captionsetup[figure]{

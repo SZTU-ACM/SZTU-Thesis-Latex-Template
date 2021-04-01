@@ -53,6 +53,12 @@
 这是一段随机插入的文本，用来填充模板布局，感受模板视觉效果。%
 }
 
+% 让各类元素在全文按1、2、3...顺序编号，而不因章节变化而重置为1
+\counterwithout*{figure}{section}
+\counterwithout*{equation}{section}
+\counterwithout*{algorithm}{section}
+\counterwithout*{table}{section}
+
 \begin{document}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 封面
@@ -106,6 +112,7 @@
 {
 % 表格字号应比正文小，一般五号/10.5pt，但是暂时没法再cls里设置（不然会影响到封面等tabular环境）
 % 所以目前只好在主文件里局部\AtBeginEnvironment
+
 	\AtBeginEnvironment{tabular}{\zihao{5}}
 	\infotitle	% 正文标题，带学生信息
 	\linespread{1.0}
