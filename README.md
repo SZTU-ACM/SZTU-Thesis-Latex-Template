@@ -16,23 +16,21 @@ LaTeX利用设置好的模板，可以编译为格式统一的pdf。
 
 本项目的目的是为了创建一个符合深圳技术大学毕业论文（设计）撰写规范的TeX模板，解决学位论文撰写时格式调整的痛点。
 
-本模板依照[2017级本科生毕业论文（设计）撰写规范及要求](./official_documents/2017级本科生毕业论文（设计）撰写规范及要求.doc)编写。
+本模板依照[2017级本科生毕业论文（设计）撰写规范及要求](./official_documents/2017级本科生毕业论文（设计）撰写规范及要求.pdf)编写。
 
 ## 主要内容
 
 ![cover](images/cover.png)
 
-1. 封面、扉页；
-2. 学位论文原创性声明和版权使用授权书；
-3. 中文摘要；
-4. 英文摘要；
-5. 目录；
-6. 符号说明（必要时）；
-7. 论文正文；
-8. 参考文献；
+1. 封面；
+2. 学位论文诚信声明；
+3. 目录；
+4. 中文摘要；
+5. 论文正文；
+6. 参考文献；
+7. 致谢。
+8. 英文摘要；
 9. 附录（必要时）；
-10. 攻读博（硕）士学位期间主要研究成果；
-11. 致谢。
 
 ## 版本状况
 
@@ -42,22 +40,20 @@ LaTeX利用设置好的模板，可以编译为格式统一的pdf。
 
 ### `SZTUthesis.cls`
 
-样式文件，如果是标准的普通学术型博士，不需要管这个文件。
-
-其他如涉密、定向之类的，目前本版本没有设计特定的设置功能，需要修改该文件。
+样式文件，不需要管这个文件。
 
 对LaTeX有所了解的同学，也可按需修改这个文件。如果这个文件的样式设计有什么bug，欢迎在issue里提出。
 
-### `gbt7714-unsrt.bst`和`gbt7714.sty`两个文件
+### `gbt7714-numerical.bst`和`gbt7714.sty`两个文件
 
-来自项目[CTeX-org/gbt7714-bibtex-style](https://github.com/CTeX-org/gbt7714-bibtex-style)，是参考文献的样式，与学校论文撰写规范一致。
+来自项目[CTeX-org/gbt7714-bibtex-style](https://github.com/CTeX-org/gbt7714-bibtex-style)，是参考文献的样式。
 
 
 ### `content`目录
 
 所有论文的编辑内容在这里。
 
-`info.tex`：论文的各种信息，标题姓名学院之类的。添加盲审格式输出，根据需求注释/保留 `\blindreviewtrue`和 `\blindreviewfalse`，输出盲审送审版本和正式版本。
+`info.tex`：论文的各种信息，标题姓名学院之类的。
 
 `abstactcn.tex`和`abstracten.tex`：顾名思义。
 
@@ -89,16 +85,4 @@ make pvc
 请使用`xelatex`，对`sztuthesis_main.tex`文件进行编译。
 Windows下可以使用`TexMaker`,`TexStudio`等IDE，选中`xelatex`编译器进行编译。
 使用高级文本编辑器，如sublime等，否则可能因为ANSI、UTF-8等编码格式问题编译失败。
-
-
-## 一些毕业流程上与word差异的考虑
-
-想到多少补充多少吧。
-
-### 知网查重
-知网查重有识别参考文献的功能，但是不怎么成熟。一般word编译的pdf能识别出来，但是有的识别不出来。这个latex模板的pdf，知网查重会把参考文献标红。
-
-不过不用担心，目前中南查重规则是要去掉参考文献的pdf。参考[`official_documents/深圳技术大学学位论文“学术不端文献检测系统”使用管理办法.mht`](http://gra.its.sztu.edu.cn/yjsy/pygl/wjtzxq54863_3_6.html)
-
-
 
