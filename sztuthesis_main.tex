@@ -1,0 +1,150 @@
+\documentclass{SZTUthesis}
+
+\usepackage{algorithm}
+\usepackage{algorithmicx}
+
+\newcommand\pkg[1]{\texttt{#1}\textsuperscript{\sffamily PKG}}
+\newcommand\env[1]{\texttt{#1}\textsuperscript{\sffamily ENV}}
+\newcommand\app[1]{\textsf{#1}}
+\newcommand\oper[1]{\texttt{#1}}
+\newcommand\cls[1]{\texttt{#1}\textsuperscript{\sffamily CLS}}
+\newcommand\bib[1]{\texttt{#1}\textsuperscript{\sffamily BIB}}
+\renewcommand\emph[1]{\textbf{#1}}
+\newcommand\format[1]{\textsf{#1}}
+
+%算法
+%\begin{algorithm}[t]
+%\caption{algorithm caption} %算法的名字
+%\hspace*{0.02in} {\bf Input:} %算法的输入， \hspace*{0.02in}用来控制位置，同时利用 \\ 进行换行
+%input parameters A, B, C\\
+%\hspace*{0.02in} {\bf Output:} %算法的结果输出
+%output result
+%\begin{algorithmic}[1]
+%\State some description % \State 后写一般语句
+%\For{condition} % For 语句，需要和EndFor对应
+%	\State ...
+%	\If{condition} % If 语句，需要和EndIf对应
+%		\State ...
+%	\Else
+%		\State ...
+%	\EndIf
+%\EndFor
+%\While{condition} % While语句，需要和EndWhile对应
+%	\State ...
+%\EndWhile
+%\State \Return result
+%\end{algorithmic}
+%\end{algorithm}
+
+\include{content/info}
+
+% lipsum
+\newcommand{\lipsum}{%
+这是一段随机插入的文本，用来填充模板布局，感受模板视觉效果。
+
+深圳技术大学是广东省和深圳市高起点、高水平、高标准建设的本科层次公办普通高等学校。2015年，深圳市委市政府开始筹建深圳技术大学。2016年3月，深圳市人民政府办公厅发布关于设立深圳技术大学筹备办公室的通知。2017年7月，深圳市机构编制委员会发布关于设立深圳技术大学（筹）的通知。2017年9月、2018年9月深圳技术大学（筹）依托深圳大学分别招收了226人和807人。2018年11月30日，经教育部批准正式设立深圳技术大学，学校独立招生，标识码为4144014655，定位于应用型高等学校。2019年9月，学校首年独立招生录取807人，招生的六个省份均高于一本线（高优线/自招线）录取；其中，广东省理科投档线进入前十。
+
+学校充分借鉴和引进德国、瑞士等发达国家一流技术大学先进的办学经验，致力于培养本科及以上层次具有国际视野、工匠精神和创新创业能力的高水平工程师、设计师等高素质应用型人才，努力建成一流的应用型技术大学。
+
+着力建设面向国家和地方发展需要的，以工学为主，理学、管理学、艺术学等协调发展的学科体系，并按计划分布发展和优化学科布局。
+
+目前设立了中德智能制造学院、大数据与互联网学院、新材料与新能源学院、城市交通与物流学院、健康与环境工程学院、创意设计学院、工程物理学院、质量和标准学院、国际交流学院、商学院、药学院、外国语学院、马克思主义学院（人文社科学院）、体育学院。已开设机械设计制造及其自动化、物联网工程、光源与照明、交通运输、汽车服务工程、工业设计等高度契合经济发展和产业需求的专业。至2022年，学校拟开设专业39个，涵盖工学、理学、管理学、艺术学、经济学等5个学科门类。
+
+这是一段随机插入的文本，用来填充模板布局，感受模板视觉效果。%
+}
+
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 封面
+% -----------------------------------------------%
+\makecoverpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 前置部分的页眉页脚设置
+% -----------------------------------------------%
+\newpage
+
+
+\pagestyle{empty}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 声明页
+% -----------------------------------------------%
+\announcement
+\newpage
+
+
+% 目录
+% -------------------------------------------%
+{
+\renewcommand{\contentsname}{\hfill \heiti \zihao{3} 目\quad 录\hfill}  
+	\zihao{-4}
+	\renewcommand*{\baselinestretch}{1.5}   % 行间距
+    \tableofcontents
+}
+\newpage
+
+% 去掉页眉章节序号后面的“.”
+\renewcommand{\sectionmark}[1]{\markright{\thesection~ #1}} 
+\renewcommand{\headrulewidth}{1pt}
+
+
+% 正文内容 
+% --------------------------------------------%
+
+\setheader
+\setfooter
+
+% 可以使用include命令导入tex文件，从而避免过多修改本文件。
+
+% 论文正文是主体，主体部分应从另页右页开始，每一章应另起页。一般由序号标题、文字叙述、图、表格和公式等五个部分构成。
+
+% 重新设置正文行间距，因为前置部分设置时候行间距被改过
+\renewcommand*{\baselinestretch}{1.0}   % 几倍行间距
+\setlength{\baselineskip}{16pt}         % 基准行间距
+
+% 正文
+{
+% 表格字号应比正文小，一般五号/10.5pt，但是暂时没法再cls里设置（不然会影响到封面等tabular环境）
+% 所以目前只好在主文件里局部\AtBeginEnvironment
+	\AtBeginEnvironment{tabular}{\zihao{5}}
+	\infotitle	% 正文标题，带学生信息
+	\linespread{1.0}
+	% 中文摘要
+	\input{content/abstractcn}
+	% 正文内容
+	\input{content/content}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 临时标签，用于编译时追踪正文末尾
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 后续内容
+% --------------------------------------------%
+
+% https://www.zhihu.com/question/29413517/answer/44358389 %
+% 说明如下：
+% secnumdepth 这个计数器是 LaTeX 标准文档类用来控制章节编号深度的。在 article 中，这个计数器的值默认是 3，对应的章节命令是 \subsubsection。也就是说，默认情况下，article 将会对 \subsubsection 及其之上的所有章节标题进行编号，也就是 \part, \section, \subsection, \subsubsection。LaTeX 标准文档类中，最大的标题是 \part。它在 book 和 report 类中的层级是「-1」，在 article 类中的层级是「0」。这里，我们在调用 \appendix 的时候将计数器设置为 -2，因此所有的章节命令都不会编号了。不过，一般还是会保留 \part 的编号的。所以在实际使用中，将它设置为 0 就可以了。
+
+% 在修改过程中请注意不要破环命令的完整性
+
+\renewcommand\appendix{\setcounter{secnumdepth}{-2}}
+\appendix
+
+% 主文件有代码去掉页眉章节编号的“.”，但这会因为bug导致无编号章节显示一个错误编号，所以这里在无编号章节之前再次重定义sectionmark。
+\renewcommand{\sectionmark}[1]{\markright{#1}}
+
+\setreference
+
+\include{content/additional}
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 英文摘要
+% -----------------------------------------------%
+\include{content/abstracten}
+
+
+
+\end{document}
