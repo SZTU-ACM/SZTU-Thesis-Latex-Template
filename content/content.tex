@@ -12,6 +12,7 @@
 插入参考文献，手动编辑？我的天哪，一百多个文献，中间插一个，怎么改序号？
 很好，可以用交叉引用，一个个编辑文献格式？
 很好，可以用 \app{endnote} 或者 \app{noteexpress} 的插入功能，你有没有发现插入是个宏，\oper{ctrl+z} 的时候会烦死你啊……
+
 叮叮！让我们祭出 \LaTeX！！\cite{2013浅谈使用}，有 \env{bibliography}，一个 \pkg{cite} 包打天下！不要太爽。
 
 
@@ -248,7 +249,9 @@ p_{i} = \frac{e^{-\varepsilon_{i}/kT}}{\sum_{j=1}^{M}e^{-\varepsilon_{j}/kT}}
 
 \section{参考文献插入示例}
 
-\LaTeX \cite{lamport1994latex}插入参考文献最方便的方式是使用 \env{bibliography}\cite{pritchard1969statistical}，大多数出版商的论文页面都会有导出 \format{bib} 格式参考文献的链接，把每个文献的 \format{bib} 放入 \bib{thesis-references.bib}，然后用 \oper{bibkey} 即可插入参考文献。
+\LaTeX \cite{lamport1994latex}插入参考文献最方便的方式是使用 \env{bibliography}\cite{pritchard1969statistical}。
+
+大多数出版商的论文页面都会有导出 \format{bib} 格式参考文献的链接，把每个文献的 \format{bib} 放入 \bib{thesis-references.bib}，然后用 \oper{bibkey} 即可插入参考文献。
 
 \lipsum
 
