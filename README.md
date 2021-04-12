@@ -74,7 +74,8 @@ LaTeX利用设置好的模板，可以编译为格式统一的pdf。
 
 ## 编译
 
-`Linux`
+### Linux
+
 ```bash
 # 单次编译
 make
@@ -86,3 +87,76 @@ make pvc
 Windows下可以使用`TexMaker`,`TexStudio`等IDE，选中`xelatex`编译器进行编译。
 使用高级文本编辑器，如sublime等，否则可能因为ANSI、UTF-8等编码格式问题编译失败。
 
+### Windows
+
+推荐使用 Visual Studio Code 编辑 Latex
+
+## 1. 安装[texlive](http://tug.org/texlive/)
+
+官网的用户体验很不好，找iso有点迷
+
+这里有提供下载镜像的汇总：[https://ctan.org/mirrors](https://ctan.org/mirrors)
+
+这个阿里云的镜像一时半会儿应该不会失效吧：[https://mirrors.aliyun.com/CTAN/systems/texlive/Images/](https://mirrors.aliyun.com/CTAN/systems/texlive/Images/)
+
+下载 `texlive.iso`
+
+打开iso文件，运行 `install-tl-windows.bat`，界面都看得懂，装就是了。
+
+## 2. vscode 安装 latex workshop 扩展
+
+vscode怎么装扩展不用赘述了
+
+## 3. 设置里，找latex栏目下的 `Latex:Tools`，编辑`settings.json`
+
+添加：
+
+```json
+{
+    "name": "xelatex",
+    "command": "xelatex",
+    "args": [
+        "-synctex=1",
+        "-interaction=nonstopmode",
+        "-file-line-error",
+        "%DOC%"
+    ]
+},
+```
+
+## 4. `Latex:Recipes`，编辑`settings.json`
+
+添加：
+
+```json
+{
+    "name": "xelatex",
+    "tools": [
+        "xelatex"
+    ]
+},
+{
+    "name": "xelatex ➞ bibtex ➞ xelatex × 2",
+    "tools": [
+        "xelatex",
+        "bibtex",
+        "xelatex",
+        "xelatex"
+    ]
+},
+```
+
+可以把latexmk的三条注释掉
+
+要想使用bibtex参考文献，需要“四次编译”，可以设为默认，把`"xelatex ➞ bibtex ➞ xelatex × 2"`挪到前面。
+
+## 一些快捷键
+
+- ctrl+alt+b：编译
+- ctrl+鼠标点击pdf：可跳至源码位置
+- 在源码位置ctrl+alt+j可跳至pdf位置
+- ctrl+k ctrl+a： 切换活动栏可见性(左侧图标开关)
+- ctrl+alt+x：显示LaTeX面板(左侧编译命令面板和文档大纲)。
+- ctrl+alt+c：清除辅助文件
+- ctrl+alt+v：查看编译的pdf文件(预览)
+- ctrl+alt+j：正向搜索。当设置`"latex-workshop.view.pdf.viewer": "tab";`时，在LaTeX源文件中按下快捷键，定位到PDF文档相应位置。
