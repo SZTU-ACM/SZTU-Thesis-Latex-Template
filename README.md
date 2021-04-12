@@ -91,7 +91,7 @@ Windows下可以使用`TexMaker`,`TexStudio`等IDE，选中`xelatex`编译器进
 
 推荐使用 Visual Studio Code 编辑 Latex
 
-## 1. 安装[texlive](http://tug.org/texlive/)
+#### 1. 安装[texlive](http://tug.org/texlive/)
 
 官网的用户体验很不好，找iso有点迷
 
@@ -103,11 +103,11 @@ Windows下可以使用`TexMaker`,`TexStudio`等IDE，选中`xelatex`编译器进
 
 打开iso文件，运行 `install-tl-windows.bat`，界面都看得懂，装就是了。
 
-## 2. vscode 安装 latex workshop 扩展
+#### 2. vscode 安装 latex workshop 扩展
 
 vscode怎么装扩展不用赘述了
 
-## 3. 设置里，找latex栏目下的 `Latex:Tools`，编辑`settings.json`
+#### 3. 设置里，找latex栏目下的 `Latex:Tools`，编辑`settings.json`
 
 添加：
 
@@ -124,7 +124,7 @@ vscode怎么装扩展不用赘述了
 },
 ```
 
-## 4. `Latex:Recipes`，编辑`settings.json`
+#### 4. `Latex:Recipes`，编辑`settings.json`
 
 添加：
 
@@ -150,7 +150,7 @@ vscode怎么装扩展不用赘述了
 
 要想使用bibtex参考文献，需要“四次编译”，可以设为默认，把`"xelatex ➞ bibtex ➞ xelatex × 2"`挪到前面。
 
-## 一些快捷键
+#### 5. 一些快捷键
 
 - ctrl+alt+b：编译
 - ctrl+鼠标点击pdf：可跳至源码位置
