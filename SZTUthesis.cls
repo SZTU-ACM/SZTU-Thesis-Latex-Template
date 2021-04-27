@@ -245,7 +245,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
     \linespread{1.5} % 这部分的行间距跟正文不一样
 
     \vspace*{2.5cm}
-    {\centering \zihao{-2} \bfseries \heiti 深圳大学本科毕业论文（设计）诚信声明 \par}
+    {\centering \zihao{-2} \bfseries \heiti 深圳技术大学本科毕业论文（设计）诚信声明 \par}
 
     \vspace{2cm}
 
