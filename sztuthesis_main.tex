@@ -1,7 +1,13 @@
 \documentclass{SZTUthesis}
-
+\usepackage{makecell}
 \usepackage{algorithm}
 \usepackage{algorithmicx}
+\usepackage{setspace}
+\setstretch{1.5}
+\hypersetup{
+colorlinks=true,
+linkcolor=black
+}
 
 \newcommand\pkg[1]{\texttt{#1}\textsuperscript{\sffamily PKG}}
 \newcommand\env[1]{\texttt{#1}\textsuperscript{\sffamily ENV}}
@@ -54,10 +60,10 @@
 }
 
 % 让各类元素在全文按1、2、3...顺序编号，而不因章节变化而重置为1
-\counterwithout*{figure}{section}
-\counterwithout*{equation}{section}
-\counterwithout*{algorithm}{section}
-\counterwithout*{table}{section}
+\numberwithin{figure}{section}
+\numberwithin{equation}{section}
+\numberwithin{algorithm}{section}
+\numberwithin{table}{section}
 
 \begin{document}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -82,8 +88,8 @@
 % 目录
 % -------------------------------------------%
 {
-\renewcommand{\contentsname}{\hfill \heiti \zihao{3} 目\quad 录\hfill}  
-	\zihao{-4}
+\renewcommand{\contentsname}{\hfill \heiti \zihao{-2} 目\quad 录\hfill}  
+	\zihao{4}
 	\renewcommand*{\baselinestretch}{1.5}   % 行间距
     \tableofcontents
 }
@@ -92,6 +98,7 @@
 % 去掉页眉章节序号后面的“.”
 \renewcommand{\sectionmark}[1]{\markright{\thesection~ #1}} 
 \renewcommand{\headrulewidth}{1pt}
+
 
 
 % 正文内容 
@@ -105,7 +112,7 @@
 % 论文正文是主体，主体部分应从另页右页开始，每一章应另起页。一般由序号标题、文字叙述、图、表格和公式等五个部分构成。
 
 % 重新设置正文行间距，因为前置部分设置时候行间距被改过
-\renewcommand*{\baselinestretch}{1.0}   % 几倍行间距
+\renewcommand*{\baselinestretch}{1.5}   % 几倍行间距
 \setlength{\baselineskip}{16pt}         % 基准行间距
 
 % 正文
@@ -113,13 +120,26 @@
 % 表格字号应比正文小，这里设为小五号，但是暂时没法再cls里设置（不然会影响到封面等tabular环境）
 % 所以目前只好在主文件里局部\AtBeginEnvironment
 
-	\AtBeginEnvironment{tabular}{\zihao{-5}}
+	\AtBeginEnvironment{tabular}{\zihao{5}}
 	\infotitle	% 正文标题，带学生信息
-	\linespread{1.0}
+	\linespread{1.5}
 	% 中文摘要
+	
 	\input{content/abstractcn}
+	\newpage
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	% 英文摘要
+	% -----------------------------------------------%
+	\include{content/abstracten}
+
 	% 正文内容
-	\input{content/content}
+	 
+	\begin{spacing}{1.5}
+		\input{content/content}
+		\end{spacing}
+	
+
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -145,13 +165,7 @@
 \setreference
 
 \include{content/additional}
-\newpage
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% 英文摘要
-% -----------------------------------------------%
-\include{content/abstracten}
-
+ 
 
 
 \end{document}
