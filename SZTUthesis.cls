@@ -106,9 +106,9 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 % “磅”是衡量印刷字体大小的单位,约等于七十二分之一英寸。
 % 而 1英寸＝25.4毫米，则1磅＝25.4/72≈0.353毫米。
 % 磅和 LaTeX的 pt- points (大约 1/72 inch) 是一致的。
-\renewcommand*{\baselinestretch}{1.0}   % 几倍行间距
+\renewcommand*{\baselinestretch}{1.5}   % 几倍行间距
 \setlength{\baselineskip}{16pt}         % 基准行间距
-\setlength{\parskip}{8pt}         % 基准段间距（word行距与字体有关，这里用16pt近似word五号宋体行间距）
+\setlength{\parskip}{12pt}         % 基准段间距（word行距与字体有关，这里用16pt近似word五号宋体行间距）
 
 
 % 设置字体 %
@@ -117,7 +117,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 \setmonofont{Courier New}
 \setsansfont{Arial}
 \renewcommand\normalsize{%
-	\@setfontsize\normalsize{10.5}{14.45}%
+	\@setfontsize\normalsize{12pt}{14.45}%
 	\abovedisplayskip 12\p@ \@plus3\p@ \@minus7\p@
 	\abovedisplayshortskip \z@ \@plus3\p@
     \belowdisplayshortskip 6.5\p@ \@plus3.5\p@ \@minus3\p@
@@ -283,9 +283,9 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 %               {sep}%定义标题和标号之间的水平距离
 %               {before-code}%定义标题前的内容
 %               [after-code]%定义标题后的内容
-\titleformat{\section}{\zihao{3} \bfseries \heiti}{\thesection}{1em}{}
-\titleformat{\subsection}{\zihao{-3} \bfseries \heiti}{\thesubsection}{1em}{}
-\titleformat{\subsubsection}{\zihao{4} \bfseries \heiti}{\thesubsubsection}{1em}{}
+\titleformat{\section}{\zihao{-2}\centering \bfseries \heiti}{\thesection}{1em}{}
+\titleformat{\subsection}{\zihao{3} \bfseries \heiti}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}{\zihao{-3} \bfseries \heiti}{\thesubsubsection}{1em}{}
 % 定义在目录中的格式
 % \titlecontents{标题名}
 %               [左间距]
@@ -296,21 +296,21 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 %               [下间距]
 \titlecontents{section}
               [0.75em] % 按样例目录左侧是和前置部分文字左侧对齐的
-              {\zihao{-4} \songti}
+              {\zihao{4} \songti}
               {\contentslabel {1em}}
               {\hspace*{-1em}}
               {\titlerule*[0.5pc]{.}\contentspage}
 
 \titlecontents{subsection}
     [2.5em]
-    {\zihao{-4} \songti} % note that 3.8 = 1.5 + 2.3
+    {\zihao{4} \songti} % note that 3.8 = 1.5 + 2.3
     {\contentslabel{2.2em}}
-    {\hspace*{-3.5em}}
+    {\hspace*{-3em}}
     {\titlerule*[0.5pc]{.}\contentspage}
 
 \titlecontents{subsubsection}
     [4em]
-    {\zihao{-4} \songti} % note that 3.8 = 1.5 + 2.3
+    {\zihao{4} \songti} % note that 3.8 = 1.5 + 2.3
     {\contentslabel{3.0em}}
     {\hspace*{-5em}}
     {\titlerule*[0.5pc]{.}\contentspage}
@@ -319,9 +319,9 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 % 正文标题+作者信息
 \newcommand{\infotitle}{
     \linespread{1.5}
-    \begin{center} \zihao{-2} \bfseries \huawenzhongsong \@titlecn \end{center}
-    \begin{center} \zihao{5} \kaishu \@department-\@priormajor \quad  \@author \end{center}
-    \begin{center} \zihao{-5} \kaishu 学号：\@studentid \end{center}
+    \begin{center} \zihao{2} \bfseries \huawenzhongsong \@titlecn \end{center}
+    % \begin{center} \zihao{5} \kaishu \@department-\@priormajor \quad  \@author \end{center}
+    % \begin{center} \zihao{-5} \kaishu 学号：\@studentid \end{center}
 }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 页眉
@@ -344,19 +344,19 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 \newcommand*{\categorycn}[1]{\gdef\@categorycn{#1}} % 定义中文分类
 \newenvironment{abstractcn} { % 定义中文摘要环境
 
-    \linespread{1.2}
+    \linespread{1.5}
 
     \vspace{0.5cm}
 
-    \noindent {\zihao{-4} \bfseries \kaishu 【摘\quad 要】} % “摘要”两个字为小四号楷体
-    \zihao{5}\kaishu \noindent % 内容为五号楷体
+    \noindent {\zihao{4} \bfseries \kaishu 【摘\quad 要】} % “摘要”两个字为小四号楷体
+    \zihao{-4}\kaishu \noindent % 内容为五号楷体
 }
 % 显示中文关键词和分类号
 {
     \begin{flushleft}
         \noindent 
-        {\zihao{-4} \bfseries \kaishu 【关键词】} % “关键词”三个字为小四号楷体
-        {\zihao{5} \kaishu \@keywordscn} \par % 内容为五号楷体
+        {\zihao{4} \bfseries \kaishu 【关键词】} % “关键词”三个字为小四号楷体
+        {\zihao{-4} \kaishu \@keywordscn} \par % 内容为五号楷体
     \end{flushleft}
 }
 
@@ -368,20 +368,20 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 \newcommand*{\keywordsen}[1]{\gdef\@keywordsen{#1}} % 英文关键词
 \newcommand*{\categoryen}[1]{\gdef\@categoryen{#1}} % 中文分类
 \newenvironment{abstracten} { % 新建英文摘要环境
-    \linespread{1.2}
+    \linespread{1.5}
 
     \begin{center} \zihao{-2} \bfseries \@titleen \end{center}
 
     \vspace{0.5cm}
 
-    \noindent {\zihao{-4} \bfseries 【Abstract】~} % 小四号
-    \zihao{5} \noindent % 五号
+    \noindent {\zihao{4} \bfseries 【Abstract】~} % 小四号
+    \zihao{-4} \noindent % 五号
 }
 {
     \begin{flushleft}
         \noindent 
-        {\zihao{-4} \bfseries 【Keywords】~} %小四号
-        {\zihao{5} \@keywordsen} \par % 五号
+        {\zihao{4} \bfseries 【Keywords】~} %小四号
+        {\zihao{-4} \@keywordsen} \par % 五号
     \end{flushleft}
 }
 
@@ -432,7 +432,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 
 % 图下方描述的楷体字
 \DeclareCaptionFont{song}{\songti}
-\DeclareCaptionFont{sfive}{\zihao{-5}}
+\DeclareCaptionFont{sfive}{\zihao{5}}
 % \renewcommand{\thefigure}{\arabic{section}-\arabic{figure}}
 
 
@@ -542,11 +542,12 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 {
     \setlength{\bibsep}{2ex} % 参考文献条目间距
     % 临时修改section标题样式
-    \renewcommand{\refname}{【参考文献】}
-    \titleformat{\section}{\bfseries \zihao{5} \kaishu}{\thesection}{1em}{}
-
+    \renewcommand{\refname}{参考文献}
+    \titleformat{\section}{\centering \bfseries \zihao{-2} \heiti}{\thesection}{1em}{}
+    % \addcontentsline{toc}{section}{参考文献}
+    % { \zihao{-2} \bfseries \heiti 参考文献 \par}
     \addcontentsline{toc}{section}{参考文献} % 由于参考文献不是section，这句把参考文献加入目录
-	\zihao{-5} \kaishu
+	\zihao{5} \kaishu
 	\bibliographystyle{gbt7714-numerical}
     \bibliography{thesis-references}
     \newpage
@@ -561,13 +562,13 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 
 \newenvironment{thankscontent} { % 定义致谢环境
 
-    \linespread{1.0}
+    \linespread{1.5}
 
     \vspace{0.5cm}
     \addcontentsline{toc}{section}{致谢}
-    {\centering \zihao{-4} \bfseries \heiti 致谢 \par}
+    {\centering \zihao{-2} \bfseries \heiti 致谢 \par}
     \vspace{0.5cm}
-    \zihao{5} \songti
+    \zihao{-4} \songti
 }
 
 % 9. 附录（必要时）%
