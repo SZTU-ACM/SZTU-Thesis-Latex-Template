@@ -207,29 +207,27 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
         \hbadness=10000  % Suppress "Underful \hbox ..."
         \centering
         \linespread{1.5}
-        {\zihao{-0} \huawenxingkai 深圳技术大学 \par} % 小初号华文行楷
-        {\zihao{-1} \heiti \makebox[14em][s]{本 科 毕 业 论 文（设计）} \par} % 小一号黑体
-
-        \vspace{4cm} % 两个空行
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=0.85\textwidth]{school_title.pdf}
+        \end{figure}
+        {\zihao{1} \heiti \makebox[10em][s]{本 科 毕 业 论 文}（设计） \par} % 小一号黑体
+        \vspace{2cm} % 空行
+        {\zihao{2} \kaishu \bfseries \centering \hfill \@titlecn \hfill \par}
+        \vspace{3cm} % 空行
         {
             \zihao{3} \heiti
             \begin{tabular}{ll}
-                \makebox[5em][s]{题目：}      & \parbox[t]{14em}{\bfseries \kaishu \uline{\centering \@titlecn \hfill}} \\
                 \makebox[5em][s]{姓名：}      & \parbox[t]{14em}{\bfseries \kaishu \uline{\centering \hfill \@author \hfill}} \\
-                \makebox[5em][s]{专业：}      & \parbox[t]{14em}{\bfseries \kaishu \uline{\centering \hfill \@priormajor \hfill}} \\
                 \makebox[5em][s]{学院：}      & \parbox[t]{14em}{\bfseries \kaishu \uline{\centering \hfill \@department \hfill}} \\
+                \makebox[5em][s]{专业：}      & \parbox[t]{14em}{\bfseries \kaishu \uline{\centering \hfill \@priormajor \hfill}} \\
                 \makebox[5em][s]{学号：}      & \parbox[t]{14em}{\bfseries \kaishu \uline{\centering \hfill \@studentid \hfill}} \\
                 \makebox[5em][s]{指导教师：}  & \parbox[t]{14em}{\bfseries \kaishu \uline{\centering \hfill \@supervisor \hfill}} \\
                 \makebox[5em][s]{职称：}      & \parbox[t]{14em}{\bfseries \kaishu \uline{\centering \hfill \@supervisortitle \hfill}} \\
+                \makebox[5em][s]{提交日期：}   & \parbox[t]{14em}{\bfseries \kaishu \uline{\centering \hfill \@thesisdate \hfill}} \\
             \end{tabular}
         }
         \par
-        \vspace{5cm} 
-        % \vfill
-        {
-            \centering
-            {\centering \zihao{3} \songti \@thesisdate \par}
-        }
     }
 }
 
@@ -259,7 +257,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 
         \begin{flushright}
                 毕业论文（设计）作者签名：\makebox[5em][c]{} \\
-                日期：\makebox[5em][c]{}\makebox[6em][s]{年月日}\makebox[4em]{}
+                日期：\makebox[5em][c]{}\makebox[6em][s]{年月日}
         \end{flushright}
         
     }
@@ -330,9 +328,16 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
     \fancyhf{}
     \fancyhead[C]{\songti \zihao{-5} 深圳技术大学本科毕业论文— \@titlecn }
 }
-% 页脚
+% 摘要页码格式
+\newcommand{\setabstractfooter}{
+    \setcounter{page}{1} % 重置页码编号
+    \pagenumbering{Roman}
+    \fancyfoot[C]{\zihao{-5} \thepage}
+}
+% 正文页码格式
 \newcommand{\setfooter}{
     \setcounter{page}{1} % 重置页码编号
+    \pagenumbering{arabic}
     \fancyfoot[C]{\zihao{-5} 第 \thepage\ 页，共 \pageref{LastPage}\ 页}
 }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -348,15 +353,15 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 
     \vspace{0.5cm}
 
-    \noindent {\zihao{4} \bfseries \kaishu 【摘\quad 要】} % “摘要”两个字为小四号楷体
-    \zihao{-4}\kaishu \noindent % 内容为五号楷体
+    \noindent {\zihao{4} \bfseries \kaishu 【摘\quad 要】} % “摘要”两个字为四号楷体
+    \zihao{-4}\kaishu \noindent % 内容为小四号楷体
 }
 % 显示中文关键词和分类号
 {
     \begin{flushleft}
         \noindent 
-        {\zihao{4} \bfseries \kaishu 【关键词】} % “关键词”三个字为小四号楷体
-        {\zihao{-4} \kaishu \@keywordscn} \par % 内容为五号楷体
+        {\zihao{4} \bfseries \kaishu 【关键词】} % “关键词”三个字为四号楷体
+        {\zihao{-4} \kaishu \@keywordscn} \par % 内容为小四号楷体
     \end{flushleft}
 }
 
@@ -370,7 +375,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 \newenvironment{abstracten} { % 新建英文摘要环境
     \linespread{1.5}
 
-    \begin{center} \zihao{-2} \bfseries \@titleen \end{center}
+    \begin{center} \zihao{2} \bfseries \@titleen \end{center}
 
     \vspace{0.5cm}
 
@@ -380,8 +385,8 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 {
     \begin{flushleft}
         \noindent 
-        {\zihao{4} \bfseries 【Keywords】~} %小四号
-        {\zihao{-4} \@keywordsen} \par % 五号
+        {\zihao{4} \bfseries 【Key words】~} %四号
+        {\zihao{-4} \@keywordsen} \par % 小四号
     \end{flushleft}
 }
 
