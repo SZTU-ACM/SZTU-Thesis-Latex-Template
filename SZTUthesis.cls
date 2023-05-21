@@ -213,7 +213,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
         \end{figure}
         {\zihao{1} \heiti \makebox[10em][s]{本 科 毕 业 论 文}（设计） \par} % 小一号黑体
         \vspace{2cm} % 空行
-        {\zihao{2} \kaishu \bfseries \centering \hfill \@titlecn \hfill \par}
+        {\zihao{2} \kaishu \bfseries {\centering \hfill \@titlecn \hfill} \par}
         \vspace{3cm} % 空行
         {
             \zihao{3} \heiti
