@@ -26,7 +26,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 % 相关宏包 %
 % ------------------------------------%
 % 支持中文的 ctex 宏包
-\RequirePackage{ctex}
+\RequirePackage[fontset=none]{ctex}
 % 页面布局
 \RequirePackage{geometry}
 % 数学宏包
@@ -97,6 +97,10 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 % \RequirePackage{natbib} % gbt7714.sty已经包含了natbib宏包
 \RequirePackage{gbt7714}
 
+% 处理ctex宏包默认字体warning问题 %
+\setCJKmainfont[AutoFakeBold]{SimSun}
+\setCJKsansfont[AutoFakeBold]{SimHei}
+\setCJKmonofont[AutoFakeBold]{FangSong}
 
 % 页面布局 %
 % -------------------------------------------------------%
@@ -108,7 +112,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 % 磅和 LaTeX的 pt- points (大约 1/72 inch) 是一致的。
 \renewcommand*{\baselinestretch}{1.5}   % 几倍行间距
 \setlength{\baselineskip}{16pt}         % 基准行间距
-\setlength{\parskip}{12pt}         % 基准段间距（word行距与字体有关，这里用16pt近似word五号宋体行间距）
+\setlength{\parskip}{12pt}              % 基准段间距（word行距与字体有关，这里用12pt近似word五号宋体行间距）
 
 
 % 设置字体 %
@@ -213,8 +217,11 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
         \end{figure}
         {\zihao{1} \heiti \makebox[10em][s]{本 科 毕 业 论 文}（设计） \par} % 小一号黑体
         \vspace{2cm} % 空行
-        {\zihao{2} \kaishu \bfseries {\centering \hfill \@titlecn \hfill} \par}
-        \vspace{3cm} % 空行
+        \begin{minipage}{\textwidth}
+            \centering
+            {\zihao{2} \kaishu \bfseries \@titlecn \par}
+        \end{minipage}
+        \vskip 3cm
         {
             \zihao{3} \heiti
             \begin{tabular}{ll}
@@ -270,7 +277,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 3. 目录 %
 % -----------------------------------------------%
-% 目录应列出论文的大标题、一级和二级节标题，逐项标明页码（具体见样例10）。各级标题应简明扼要、点出各部分主要内容。学位论文的页码编排为：正文和后置部分用阿拉伯数字编连续码，前置部分用罗马数字单独编连续码（封面除外）。
+% 目录由论文（设计）的章、节、附录等序号、名称和页码组成。单独成页。四号宋体，1.5倍行距分散对齐排版。 
 % “目录”两字居中（三号黑体），下空两行为章、节、小节及其开始页码（靠右顶格）。章、节、小节分别以阶梯式排列：1（第1章）、1.1、1.1.1依次标出。章、节、小节的题名与页码之间用“．．．．．．”连接。除“目录”两字外，其余字体均为小四号宋体。
 
 \setcounter{secnumdepth}{3}
@@ -281,9 +288,14 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 %               {sep}%定义标题和标号之间的水平距离
 %               {before-code}%定义标题前的内容
 %               [after-code]%定义标题后的内容
+\newcommand{\sectionbreak}{\clearpage}  % 大章前分页
 \titleformat{\section}{\zihao{-2}\centering \bfseries \heiti}{\thesection}{1em}{}
 \titleformat{\subsection}{\zihao{3} \bfseries \heiti}{\thesubsection}{1em}{}
 \titleformat{\subsubsection}{\zihao{-3} \bfseries \heiti}{\thesubsubsection}{1em}{}
+% 设置章节标题的段间距，默认0.5段间距足够了，去掉章节标题自带的段间距
+\titlespacing{\section}{0pt}{0pt}{0pt}%{0.3em}{0.3em}
+\titlespacing{\subsection}{0pt}{0pt}{0pt}%{0.3em}{0.3em}
+\titlespacing{\subsubsection}{0pt}{0pt}{0pt}%{0.3em}{0.3em}
 % 定义在目录中的格式
 % \titlecontents{标题名}
 %               [左间距]
@@ -291,7 +303,6 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 %               {标题标志}
 %               {无序号标题}
 %               {指引线与页码}
-%               [下间距]
 \titlecontents{section}
               [0.75em] % 按样例目录左侧是和前置部分文字左侧对齐的
               {\zihao{4} \songti}
@@ -379,8 +390,8 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 
     \vspace{0.5cm}
 
-    \noindent {\zihao{4} \bfseries 【Abstract】~} % 小四号
-    \zihao{-4} \noindent % 五号
+    \noindent {\zihao{4} \bfseries 【Abstract】~} % 四号
+    \zihao{-4} \noindent % 小四号
 }
 {
     \begin{flushleft}
@@ -396,11 +407,11 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 % 论文正文是主体，主体部分应从另页右页开始，每一章应另起页。一般由序号标题、文字叙述、图、表格和公式等五个部分构成。
 % 写作形式可因研究内容的性质不同而变化，一般可包括绪论（或综述）、理论分析、计算方法、实验装置和测试方法、实验结果分析和讨论、研究成果、结论及意义等。
 % 该部分由用户编写
-% 一级标题字体不大于三号，黑体加粗；
-% 二级标题比一级标题小半号，黑体加粗；
-% 三级标题比上一级标题小半号，黑体加粗；正文内容五号宋体。
-% 以上内容一律单倍行距、段前段后 0.5 行、两端对齐排
-% 版。
+% 一级标题字体不大于小二号，黑体加粗； 
+% 二级标题比一级标题小半号，黑体加粗； 
+% 三级标题比上一级标题小半号，黑体加粗； 
+% 正文内容小四号宋体。 
+% 以上内容一律1.5倍行距、段前段后0.5行、两端对齐排版。 
 
 % 图表等浮动环境设置 %
 % ----------------------------------------------------------%

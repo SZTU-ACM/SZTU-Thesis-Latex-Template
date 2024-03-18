@@ -1,0 +1,73 @@
+{
+    "python.terminal.executeInFileDir": true,
+    // bibtex 格式
+    "latex-workshop.bibtex-format.tab": "tab",
+
+    // 自动编译，全部关闭，当且仅当你认为有需要的时候才会去做编译
+    "latex-workshop.latex.autoBuild.run": "never",
+    "latex-workshop.latex.autoBuild.cleanAndRetry.enabled": false,
+
+
+    // 这是一些独立的编译选项，可以作为工具被编译方案调用
+    "latex-workshop.latex.tools": [
+        {
+            "name": "xelatex",
+            "command": "xelatex",
+            "args": [
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "-output-directory=%OUTDIR%",
+                "%DOC%"
+            ]
+        },
+        {
+            "name": "bibtex",
+            "command": "bibtex",
+            "args": [
+                "%DOCFILE%"
+            ],
+            "env": {}
+        }
+    ],
+
+    // 这是一些编译方案，会出现在 GUI 菜单里
+    "latex-workshop.latex.recipes": [
+        {
+            "name": "xelatex ➞ bibtex ➞ xelatex`×2",
+            "tools": [
+                "xelatex",
+                "bibtex",
+                "xelatex",
+                "xelatex"
+            ]
+        }
+    ],
+
+    // 清空中间文件
+    "latex-workshop.latex.clean.fileTypes": [
+        "*.aux",
+        "*.bbl",
+        "*.blg",
+        "*.idx",
+        "*.ind",
+        "*.lof",
+        "*.lot",
+        "*.out",
+        "*.toc",
+        "*.acn",
+        "*.acr",
+        "*.alg",
+        "*.glg",
+        "*.glo",
+        "*.gls",
+        "*.ist",
+        "*.fls",
+        "*.log",
+        "*.fdb_latexmk",
+        "*.bcf",
+        "*.run.xml",
+        "*.synctex.gz"
+    ],
+    "latex-workshop.view.pdf.viewer": "tab"
+}
