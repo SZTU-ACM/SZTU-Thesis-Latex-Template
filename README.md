@@ -5,7 +5,7 @@
 欢迎对 LaTeX 感兴趣的同学参与项目维护，添加更多features
 
 <div style="font-size:24px; font-weight:bold">
-latex 使用问题，请加<br/>
+LaTeX 使用问题，请加<br/>
 深圳技术大学学位论文 LaTeX 模板交流 QQ群：
 <strong style="color:red">710337475</strong>
 </div>
