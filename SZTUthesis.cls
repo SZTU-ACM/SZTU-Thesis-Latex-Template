@@ -91,6 +91,8 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 \RequirePackage{lastpage}
 % 控制元素编号与章节的关系
 \RequirePackage{chngcntr}
+% 字符串处理
+\RequirePackage{xstring}
 
 % 参考文献格式 GBT7714-2005
 % 来自https://github.com/CTeX-org/gbt7714-bibtex-style
@@ -168,7 +170,9 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 %----------------------------------------------------------------------%
 % 以下定义封面相关命令和相应的宏，以titleen为例，\titleen为实际在源码中使用的命令，一旦执行就会因为\gdef\@titleen{#1}使得其产生一个\@titleen的宏，而该宏能够在后续的环境中使用。
 \newcommand*{\titlecn}[1]{\gdef\@titlecn{#1}}                           % 中文标题
+\newcommand*{\titlecnSingleLine}{\StrSubstitute{\@titlecn}{\\}{}}         % 中文标题去掉换行“\\”
 \newcommand*{\titleen}[1]{\gdef\@titleen{#1}}                           % 英文标题
+\newcommand*{\titleenSingleLine}{\StrSubstitute{\@titleen}{\\}{}}         % 英文标题去掉换行“\\”
 \newcommand*{\priormajor}[1]{\gdef\@priormajor{#1}}                     % 一级学科（学科专业）
 \newcommand*{\minormajor}[1]{\gdef\@minormajor{#1}}                     % 二级学科（学科方向）
 \newcommand*{\interestmajor}[1]{\gdef\@interestmajor{#1}}               % 研究方向，关键词组
@@ -258,7 +262,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
     \setlength{\parindent}{2em} % 首行缩进
     {
         \zihao{4}
-        本人郑重声明：所呈交的毕业论文（设计），题目《\@titlecn》 是本人在指导教师的指导下，独立进行研究工作所取得的成果。对本文的研究做出重要贡献的个人和集体，均已在文中以明确方式注明。除此之外，本论文不包含任何其他个人或集体已经发表或撰写过的作品成果。本人完全意识到本声明的法律结果。
+        本人郑重声明：所呈交的毕业论文（设计），题目《\titlecnSingleLine》 是本人在指导教师的指导下，独立进行研究工作所取得的成果。对本文的研究做出重要贡献的个人和集体，均已在文中以明确方式注明。除此之外，本论文不包含任何其他个人或集体已经发表或撰写过的作品成果。本人完全意识到本声明的法律结果。
 
         \vspace{4cm}
 
@@ -328,7 +332,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 % 正文标题+作者信息
 \newcommand{\infotitle}{
     \linespread{1.5}
-    \begin{center} \zihao{2} \bfseries \huawenzhongsong \@titlecn \end{center}
+    \begin{center} \zihao{2} \bfseries \huawenzhongsong \titlecnSingleLine \end{center}
     % \begin{center} \zihao{5} \kaishu \@department-\@priormajor \quad  \@author \end{center}
     % \begin{center} \zihao{-5} \kaishu 学号：\@studentid \end{center}
 }
@@ -337,7 +341,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 \newcommand{\setheader}{
     \pagestyle{fancy}
     \fancyhf{}
-    \fancyhead[C]{\songti \zihao{-5} 深圳技术大学本科毕业论文— \@titlecn }
+    \fancyhead[C]{\songti \zihao{-5} 深圳技术大学本科毕业论文— \titlecnSingleLine }
 }
 % 摘要页码格式
 \newcommand{\setabstractfooter}{
