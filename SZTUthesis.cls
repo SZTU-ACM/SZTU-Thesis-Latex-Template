@@ -329,13 +329,13 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
     {\titlerule*[0.5pc]{.}\contentspage}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% 正文标题+作者信息
-\newcommand{\infotitle}{
-    \linespread{1.5}
-    \begin{center} \zihao{2} \bfseries \huawenzhongsong \titlecnSingleLine \end{center}
-    % \begin{center} \zihao{5} \kaishu \@department-\@priormajor \quad  \@author \end{center}
-    % \begin{center} \zihao{-5} \kaishu 学号：\@studentid \end{center}
-}
+% % 正文标题+作者信息
+% \newcommand{\infotitle}{
+%     \linespread{1.5}
+%     \begin{center} \zihao{2} \bfseries \huawenzhongsong \titlecnSingleLine \end{center}
+%     % \begin{center} \zihao{5} \kaishu \@department-\@priormajor \quad  \@author \end{center}
+%     % \begin{center} \zihao{-5} \kaishu 学号：\@studentid \end{center}
+% }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 页眉
 \newcommand{\setheader}{
@@ -365,6 +365,8 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 \newenvironment{abstractcn} { % 定义中文摘要环境
 
     \linespread{1.5}
+
+    \begin{center} \zihao{2} \bfseries \huawenzhongsong \@titlecn \end{center}
 
     \vspace{0.5cm}
 
