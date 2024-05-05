@@ -568,6 +568,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
     \titleformat{\section}{\centering \bfseries \zihao{-2} \heiti}{\thesection}{1em}{}
     % \addcontentsline{toc}{section}{参考文献}
     % { \zihao{-2} \bfseries \heiti 参考文献 \par}
+    \phantomsection % 使得hyperref目录能够跳转到正确的位置
     \addcontentsline{toc}{section}{参考文献} % 由于参考文献不是section，这句把参考文献加入目录
 	\zihao{5} \kaishu
 	\bibliographystyle{gbt7714-numerical}
@@ -587,6 +588,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
     \linespread{1.5}
 
     \vspace{0.5cm}
+    \phantomsection % 使得hyperref目录能够跳转到正确的位置
     \addcontentsline{toc}{section}{致谢}
     {\centering \zihao{-2} \bfseries \heiti 致谢 \par}
     \vspace{0.5cm}
