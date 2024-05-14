@@ -83,6 +83,8 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 \RequirePackage{etoolbox}
 % 下划线（\underline会执行box逻辑，下划线文字无法换行。ulem的\uline为替代品）
 \RequirePackage[normalem]{ulem}
+% 动态宽度包，代替minipage
+\RequirePackage{varwidth}
 % % 尺寸计算
 % \RequirePackage{calc}
 % 算法编号
@@ -217,15 +219,21 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
         \linespread{1.5}
         \begin{figure}[H]
             \centering
-            \includegraphics[width=0.85\textwidth]{school_title.pdf}
+            \includegraphics[width=0.75\textwidth]{school_title.pdf}
         \end{figure}
-        {\zihao{1} \heiti \makebox[10em][s]{本 科 毕 业 论 文}（设计） \par} % 小一号黑体
-        \vspace{2cm} % 空行
+        \vspace{-1cm}
+        {\zihao{2} \bfseries \songti 本科毕业论文（设计） \par} % 二号宋体
+        \vspace{2.5cm} % 空行
         \begin{minipage}{\textwidth}
             \centering
-            {\zihao{2} \kaishu \bfseries \@titlecn \par}
+            \bfseries
+            {\zihao{3} \heiti 题目：} 
+            \begin{varwidth}[t]{0.85\textwidth}
+                \zihao{2} \kaishu \uline{\@titlecn} 
+            \end{varwidth}
+
         \end{minipage}
-        \vskip 3cm
+        \vskip 3.5cm
         {
             \zihao{3} \heiti
             \begin{tabular}{ll}
