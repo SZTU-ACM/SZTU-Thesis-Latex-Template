@@ -24,7 +24,7 @@ LaTeX利用设置好的模板，可以编译为格式统一的pdf。
 
 ## 主要内容
 
-![cover](images/cover.svg)
+![cover](images/cover.jpg)
 
 1. 封面；
 2. 学位论文诚信声明；
