@@ -460,7 +460,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 % \captionsetup[subfigure]{singlelinecheck=off,justification=raggedright} % 左对齐
 \captionsetup[subfigure]{singlelinecheck=off,justification=centering}   % 居中
 
-% 图下方描述的楷体字
+% 图下方描述的字体
 \DeclareCaptionFont{song}{\songti}
 \DeclareCaptionFont{sfive}{\zihao{5}}
 % \renewcommand{\thefigure}{\arabic{section}-\arabic{figure}}
