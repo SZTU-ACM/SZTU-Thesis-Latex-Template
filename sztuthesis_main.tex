@@ -28,15 +28,15 @@ linkcolor=black
 %\begin{algorithmic}[1]
 %\State some description % \State 后写一般语句
 %\For{condition} % For 语句，需要和EndFor对应
-%	\State ...
-%	\If{condition} % If 语句，需要和EndIf对应
-%		\State ...
-%	\Else
-%		\State ...
-%	\EndIf
+%    \State ...
+%    \If{condition} % If 语句，需要和EndIf对应
+%        \State ...
+%    \Else
+%        \State ...
+%    \EndIf
 %\EndFor
 %\While{condition} % While语句，需要和EndWhile对应
-%	\State ...
+%    \State ...
 %\EndWhile
 %\State \Return result
 %\end{algorithmic}
@@ -89,9 +89,9 @@ linkcolor=black
 % -------------------------------------------%
 {
 \renewcommand{\contentsname}{\hfill \heiti \zihao{-2} 目\quad 录\hfill}  
-	\zihao{4}
-	\setlength{\parskip}{6pt}  			% 段间距，补偿latex行间距计算（与word的差距）
-	\renewcommand*{\baselinestretch}{1.5}   % 行间距
+    \zihao{4}
+    \setlength{\parskip}{6pt}               % 段间距，补偿latex行间距计算（与word的差距）
+    \renewcommand*{\baselinestretch}{1.5}   % 行间距
     \tableofcontents
 }
 \newpage
@@ -115,32 +115,35 @@ linkcolor=black
 \renewcommand*{\baselinestretch}{1.5}   % 几倍行间距
 \setlength{\baselineskip}{16pt}         % 基准行间距
 
+% 摘要
+{
+    \linespread{1.5}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    % 中文摘要
+    \setabstractfooter
+
+    \input{content/abstractcn}
+    \newpage
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    % 英文摘要
+    % -----------------------------------------------%
+    \include{content/abstracten}
+}
+\setfooter
 % 正文
 {
 % 表格字号应比正文小，这里设为五号，但是暂时没法在cls里设置（不然会影响到封面等tabular环境）
 % 所以目前只好在主文件里局部\AtBeginEnvironment
-	\AtBeginEnvironment{tabular}{\zihao{5}}
-	
-	\linespread{1.5}
-	% 中文摘要
-	\setabstractfooter
-	
-	\input{content/abstractcn}
-	\newpage
+    \AtBeginEnvironment{tabular}{\zihao{5}}
+    
+    \linespread{1.5}
 
-	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	% 英文摘要
-	% -----------------------------------------------%
-	\include{content/abstracten}
-
-	% 正文内容
-	\setfooter
-	 
-	\begin{spacing}{1.5}
-		\input{content/content}
-	\end{spacing}
-	
-
+    % 正文内容
+     
+    \begin{spacing}{1.5}
+        \input{content/content}
+    \end{spacing}
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
