@@ -48,7 +48,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 % 设置标题格式
 \RequirePackage{titlesec}
 % 超链接 hyperref 的设置
-\RequirePackage{hyperref}
+\RequirePackage[colorlinks=true, linkcolor=black, citecolor=black, urlcolor=black]{hyperref}           % 设置链接包括引用的颜色
 % 插入图片
 \RequirePackage{graphicx}
 % 表格
@@ -95,6 +95,9 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 \RequirePackage{chngcntr}
 % 字符串处理
 \RequirePackage{xstring}
+% 添加浮动环境
+\RequirePackage{float}
+
 
 % 参考文献格式 GBT7714-2005
 % 来自https://github.com/CTeX-org/gbt7714-bibtex-style

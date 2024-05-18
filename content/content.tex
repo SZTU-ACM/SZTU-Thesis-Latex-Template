@@ -68,6 +68,16 @@
 
 \emph{学校对图片只有小标题要求，没有进一步的子图要求，我们按科技论文常规排版来}
 
+\subsection{图片位置固定}
+在LaTeX中，figure环境用于插入和管理图片或图表，而放置图片的方式由可选参数来控制。H是一个浮动参数选项，表示强制将图片放置在其出现的位置。具体来说，H是由float包提供的选项，如果要使用它，需要在导言区加载float包：
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\linewidth]{sztu.png}
+    \caption{图片位置固定}
+    \label{fig:H_example}
+\end{figure}
+这样做会强制LaTeX将图片放在代码中的确切位置，而不会尝试将其移动到其他页面或位置。这个选项对于需要严格控制图片位置的文档特别有用。在这个示例中，figure环境中的图片会在其代码位置处被强制放置，而不会被浮动到文档的其他地方。
+
 \subsection{单图布局}
 
 \lipsum

@@ -121,6 +121,9 @@ linkcolor=black
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     % 中文摘要
     \setabstractfooter
+	% 自定义图和表的编号格式 将图表的标签编号格式的修改为 x-x
+	\renewcommand{\thefigure}{\arabic{section}-\arabic{figure}}
+	\renewcommand{\thetable}{\arabic{section}-\arabic{table}}
 
     \input{content/abstractcn}
     \newpage
