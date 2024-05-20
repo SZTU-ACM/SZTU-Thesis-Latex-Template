@@ -121,9 +121,6 @@ linkcolor=black
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     % 中文摘要
     \setabstractfooter
-	% 自定义图和表的编号格式 将图表的标签编号格式的修改为 x-x
-	\renewcommand{\thefigure}{\arabic{section}-\arabic{figure}}
-	\renewcommand{\thetable}{\arabic{section}-\arabic{table}}
 
     \input{content/abstractcn}
     \newpage
@@ -139,6 +136,9 @@ linkcolor=black
 % 表格字号应比正文小，这里设为五号，但是暂时没法在cls里设置（不然会影响到封面等tabular环境）
 % 所以目前只好在主文件里局部\AtBeginEnvironment
     \AtBeginEnvironment{tabular}{\zihao{5}}
+	% 自定义图和表的编号格式 将图表的标签编号格式的修改为 x-x
+	\renewcommand{\thefigure}{\arabic{section}-\arabic{figure}}
+	\renewcommand{\thetable}{\arabic{section}-\arabic{table}}
     
     \linespread{1.5}
 
