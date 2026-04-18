@@ -59,11 +59,13 @@ linkcolor=black
 这是一段随机插入的文本，用来填充模板布局，感受模板视觉效果。%
 }
 
-% 让各类元素在全文按1、2、3...顺序编号，而不因章节变化而重置为1
+% 让各类元素按章编号；图、表题号形如「图 1-1」「表 2-3」（《撰写规范》按章编序）
 \numberwithin{figure}{section}
 \numberwithin{equation}{section}
 \numberwithin{algorithm}{section}
 \numberwithin{table}{section}
+\renewcommand{\thefigure}{\thesection-\arabic{figure}}
+\renewcommand{\thetable}{\thesection-\arabic{table}}
 
 \begin{document}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -154,22 +156,20 @@ linkcolor=black
 % 后续内容
 % --------------------------------------------%
 
-% https://www.zhihu.com/question/29413517/answer/44358389 %
-% 说明如下：
-% secnumdepth 这个计数器是 LaTeX 标准文档类用来控制章节编号深度的。在 article 中，这个计数器的值默认是 3，对应的章节命令是 \subsubsection。也就是说，默认情况下，article 将会对 \subsubsection 及其之上的所有章节标题进行编号，也就是 \part, \section, \subsection, \subsubsection。LaTeX 标准文档类中，最大的标题是 \part。它在 book 和 report 类中的层级是「-1」，在 article 类中的层级是「0」。这里，我们在调用 \appendix 的时候将计数器设置为 -2，因此所有的章节命令都不会编号了。不过，一般还是会保留 \part 的编号的。所以在实际使用中，将它设置为 0 就可以了。
+% 参考文献、致谢：不希望再出现「第 1 章」式编号时，将 secnumdepth 设为 -2（勿用重定义 \appendix 代替，否则无法使用标准附录）。
+% article 中 secnumdepth 控制标题是否带编号；设为 -2 时 \section 等不出现在章节编号中。
 
-% 在修改过程中请注意不要破环命令的完整性
+\setcounter{secnumdepth}{-2}
 
-\renewcommand\appendix{\setcounter{secnumdepth}{-2}}
-\appendix
-
-% 主文件有代码去掉页眉章节编号的“.”，但这会因为bug导致无编号章节显示一个错误编号，所以这里在无编号章节之前再次重定义sectionmark。
+% 主文件有代码去掉页眉章节序号的“.”；无编号部分前再次重定义 sectionmark，避免页眉显示错误编号。
 \renewcommand{\sectionmark}[1]{\markright{#1}}
 
 \setreference
 
 \include{content/additional}
- 
 
+% 附录（非必需）排在致谢之后，与《撰写规范》装订顺序一致；以下为示例，正式论文可删改。
+\setcounter{secnumdepth}{3}
+\input{content/appendix_example}
 
 \end{document}

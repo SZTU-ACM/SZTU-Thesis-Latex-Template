@@ -1,5 +1,11 @@
 /*.bat
 *.aux
+*.lof
+*.lot
+*.idx
+*.ind
+*.ilg
+*.vrb
 *.bbl
 *.blg
 *.fdb_latexmk

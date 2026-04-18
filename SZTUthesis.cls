@@ -1,15 +1,8 @@
 %
-% 本模版根据深圳技术大学学位论文撰写规范创建
-% 论文内容一般应由 9 个主要部分组成，依次为：
-% 1.封面；
-% 2.学位论文诚信声明；
-% 3.目录；
-% 4.中文摘要；
-% 5.论文正文；
-% 6.参考文献；
-% 7.致谢。
-% 8.英文摘要；
-% 9.附录（必要时）；
+% 本模版依据深圳技术大学本科生毕业论文（设计）撰写规范编排。
+% 主体装订顺序（与主文件 sztuthesis_main.tex 一致）：
+% 1.封面；2.诚信声明；3.目录；4.中文摘要与关键词；5.英文摘要与关键词；
+% 6.正文；7.参考文献；8.致谢；9.附录（必要时，示例见 content/appendix_example.tex）。
 
 
 \NeedsTeXFormat{LaTeX2e}
@@ -206,7 +199,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
     \gdef\@thesisdate{\year{} 年 \month{} 月 \day{} 日} % 将构建好的日期存储到宏（\@thesisdate）中
 }
 
-% 以下为学位论文的封面内容
+% 以下为本科毕业论文（设计）封面所用字段与版式
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 定义 \makecoverpage 实现封面的重新绘制
@@ -251,7 +244,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% 2.学位论文诚信声明
+% 2. 本科毕业论文（设计）诚信声明
 % -----------------------------------------------%
 % 单独设一页，排在扉页后
 % 按模板，标题二号，内容四号，这里学校没有特别强调字体字号，
@@ -366,7 +359,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 4. 中文摘要
 % -----------------------------------------------%
-% 摘要】和【关键词】：【】内字符小四号楷体加粗，【】外字符五号楷体。以上内容一律单倍行距、段前段后 0.5 行、两端对齐排版。
+% 【摘要】【关键词】：【】内四号楷体加粗，【】外小四号楷体；环境内使用 1.5 倍行距（见 abstractcn 中 \linespread）。
 
 \newcommand*{\keywordscn}[1]{\gdef\@keywordscn{#1}} % 定义中文关键词
 \newcommand*{\categorycn}[1]{\gdef\@categorycn{#1}} % 定义中文分类
@@ -393,10 +386,9 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 4. 英文摘要
 % -----------------------------------------------%
-% 英文摘要格式和内容与中文摘要相对应，另起一页，具体见样例9。居中打印论文英文题名（三号Times New Roman字体），换行顶格编排“Abstract”及英文摘要内容（四号Times New Roman字体），摘要内容每段开头留四个字符空格。摘要内容后下换行顶格编排“Keywords”和“Classification”。
-% 定义英文摘要，字体全部为timesnewroman
+% 英文摘要与中文摘要对应；题名居中、英文为 Times New Roman。【Abstract】【Key words】为四号加粗，其余小四号（见 abstracten）。
 \newcommand*{\keywordsen}[1]{\gdef\@keywordsen{#1}} % 英文关键词
-\newcommand*{\categoryen}[1]{\gdef\@categoryen{#1}} % 中文分类
+\newcommand*{\categoryen}[1]{\gdef\@categoryen{#1}} % 英文摘要页分类号（可与中文侧中图分类号对应）
 \newenvironment{abstracten} { % 新建英文摘要环境
     \linespread{1.5}
 
@@ -429,7 +421,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 
 % 图表等浮动环境设置 %
 % ----------------------------------------------------------%
-% 正文中出现的图表力求简明，图次和表次一律写成图 1，图 2…或表 1，表 2…，并尽可能随文排。
+% 图、表按章编号，题号形如「图 1-1」「表 2-3」；\thefigure / \thetable 在主文件中设定。
 % 默认情况下, \LaTeX{} 要求每页的文字至少占据 20%,否则该页就只单独放置一个浮动环境,
 % 而这通常不是我们想要的, 我们将这个要求降低到 5%.
 \renewcommand*{\textfraction}{0.05}
@@ -463,8 +455,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 % 图下方描述的字体
 \DeclareCaptionFont{song}{\songti}
 \DeclareCaptionFont{sfive}{\zihao{5}}
-% \renewcommand{\thefigure}{\arabic{section}-\arabic{figure}}
-
+% 图、表序号格式（章号-序号）在 sztuthesis_main.tex 中于 \numberwithin 之后定义。
 
 
 \captionsetup[figure]{
@@ -475,8 +466,6 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 }
 % 表格格式
 % ------------------------------------------------------%
-% \renewcommand{\thetable}{\arabic{section}-\arabic{table}}
-% \renewcommand {\thetable} {\thesection-\arabic{table}}
 \captionsetup[table]{
 	format=plain,      % 标题从第二行开始是否缩进，plain无缩进，hang有缩进
 	labelsep=quad,     % 分隔符是一个空格
@@ -567,7 +556,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 
 % 6. 参考文献 %
 % ------------------------------------------------------%
-% 【】标题五号楷体顶格加粗，内容小五号楷体顶格。单倍行距、段前段后 0.5 行、两端对齐排版。
+% 学校《撰写规范》对「注释与参考文献」条目的字体、行距另有说明；本模板中 \setreference 使用小二号黑体居中标题、五号楷体文献表（与规范文本可能不完全一致，按需自行改 cls）。
 \newcommand{\setreference}
 {
     \setlength{\bibsep}{2ex} % 参考文献条目间距
@@ -588,8 +577,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 }
 % 7. 致谢 %
 % 作者对给予指导、各类资助和协助完成研究工作以及提供各种对论文工作有利条件的单位及个人表示感谢。
-% “致谢”二字居中，小四号黑体加粗
-% 内容五号宋体，单倍行距、段前段后0.5行
+% 「致谢」标题居中，小二号黑体加粗（与正文一级标题一致）；正文为小四号宋体，1.5 倍行距（见 thankscontent）。
 
 \newenvironment{thankscontent} { % 定义致谢环境
 
@@ -605,8 +593,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 
 % 9. 附录（必要时）%
 % -------------------------------------------------------%
-% TODO %
-% 附录中主要列入正文内不便列出的过分冗长的公式推导，供查读方便所需的辅助性数学工具或表格、重复性数据图表、计算程序及说明等。附录依次为附录1，附录2……等，“附录X”三字居中（三号黑体）。附录中的图表公式另编排序号，与正文分开。
+% 附录用于不宜放入正文的冗长推导、辅助图表、程序说明等；装订在致谢之后，见主文件末尾与 content/appendix_example.tex。
 
 
 % 篇眉和页码要求 %

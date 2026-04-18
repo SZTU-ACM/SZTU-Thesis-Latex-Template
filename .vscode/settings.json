@@ -1,0 +1,93 @@
+{
+  // ---------------------------------------------------------------------------
+  // LaTeX Workshop（VS Code / Cursor）：对接 TeX Live / MacTeX，不写死绝对路径。
+  // 根文件固定为本仓库主文档，避免在子文件上点「Build」时选错入口。
+  // ---------------------------------------------------------------------------
+  "latex-workshop.latex.rootFile": "%WORKSPACE_FOLDER%/sztuthesis_main.tex",
+  "latex-workshop.latex.rootFile.useSubFile": false,
+
+  // 输出目录与主文件同目录，便于 bibtex 读 .aux、与 Makefile / build.sh 一致。
+  "latex-workshop.latex.outDir": "%DIR%",
+
+  // 自动编译：仓库默认关闭，避免他人克隆后一打开工程就全盘编译。
+  // 需要「保存即编译」时，可改为 "onSave"；需要监听依赖时改为 "onFileChange"。
+  "latex-workshop.latex.autoBuild.run": "never",
+  "latex-workshop.latex.autoBuild.cleanAndRetry.enabled": false,
+
+  // 从工具栏 / 快捷键 Build 时使用的方案（与 recipes 中 name 一致）。
+  "latex-workshop.latex.recipe.default": "latexmk (xelatex)",
+
+  "latex-workshop.bibtex-format.tab": "tab",
+
+  "latex-workshop.latex.tools": [
+    {
+      "name": "latexmk-xelatex",
+      "command": "latexmk",
+      "args": [
+        "-synctex=1",
+        "-interaction=nonstopmode",
+        "-file-line-error",
+        "-halt-on-error",
+        "-xelatex",
+        "%DOC%"
+      ],
+      "env": {}
+    },
+    {
+      "name": "xelatex",
+      "command": "xelatex",
+      "args": [
+        "-synctex=1",
+        "-interaction=nonstopmode",
+        "-file-line-error",
+        "-halt-on-error",
+        "%DOC%"
+      ],
+      "env": {}
+    },
+    {
+      "name": "bibtex",
+      "command": "bibtex",
+      "args": ["%DOC%"],
+      "env": {}
+    }
+  ],
+
+  // 推荐方案：latexmk 内部按 aux/bbl 变化自动决定 xelatex / bibtex 次数（通常 ≥4 步等效）。
+  // 备选方案：手写「xelatex ×1 → bibtex → xelatex ×2」，与从干净目录冷启动的经典顺序一致。
+  "latex-workshop.latex.recipes": [
+    {
+      "name": "latexmk (xelatex)",
+      "tools": ["latexmk-xelatex"]
+    },
+    {
+      "name": "xelatex → bibtex → xelatex ×2",
+      "tools": ["xelatex", "bibtex", "xelatex", "xelatex"]
+    }
+  ],
+
+  "latex-workshop.latex.clean.fileTypes": [
+    "*.aux",
+    "*.bbl",
+    "*.blg",
+    "*.idx",
+    "*.ind",
+    "*.lof",
+    "*.lot",
+    "*.out",
+    "*.toc",
+    "*.acn",
+    "*.acr",
+    "*.alg",
+    "*.glg",
+    "*.glo",
+    "*.gls",
+    "*.ist",
+    "*.fls",
+    "*.log",
+    "*.fdb_latexmk",
+    "*.bcf",
+    "*.run.xml",
+    "*.synctex.gz"
+  ]
+}
