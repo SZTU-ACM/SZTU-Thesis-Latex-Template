@@ -81,6 +81,25 @@
 \label{F.sztu_single}
 \end{figure}
 
+\subsection{位置固定（\texttt{[H]}，非浮动）}
+
+学校《撰写规范》对\textbf{图题字号、按章编号、图题在图下}等作了要求，\textbf{并未规定}插图必须采用浮动体；因此使用 \texttt{figure[H]} 将插图\textbf{严格固定在源码位置}（不漂到上下页）\textbf{不违反规范}。但 \texttt{[H]} 会阻止 \LaTeX{} 按版面优化重排插图，大图或连续多图时可能出现\textbf{分页难看、垂直空白过大}等问题，\textbf{宜按需少量使用}；一般情况仍推荐 \texttt{htbp}、\texttt{!htb} 等浮动策略。
+
+以下示例中，插图应出现在\textbf{两段文字之间}，而不会「顶开」后一段到上一页或漂到后一页的浮动区。
+
+第一段占位文字：\lipsum[1]
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.35\textwidth]{sztu.png}
+    \caption{非浮动单图示例（\texttt{[H]}）}
+    \label{F.here_fixed}
+\end{figure}
+
+第二段占位文字：\lipsum[2]
+
+图~\ref{F.here_fixed} 使用 \pkg{float} 宏包提供的 \texttt{H} 说明符；本模板已在 \cls{SZTUthesis.cls} 中加载 \pkg{float}，正文中直接写 \verb|\begin{figure}[H]| 即可。
+
 \subsection{横排布局}
 
 \emph{横排布局如图~\ref{F.sztu_row} 所示。}

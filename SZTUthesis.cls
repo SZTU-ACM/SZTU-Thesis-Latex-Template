@@ -80,6 +80,8 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 \RequirePackage{varwidth}
 % % 尺寸计算
 % \RequirePackage{calc}
+% 为 figure/table 的 [H]（就地固定）提供 Here 浮动体类型；algorithm 亦依赖 float，此处显式引入以免删去算法章节后失效
+\RequirePackage{float}
 % 算法编号
 \RequirePackage{algorithm}
 % 获取总页数
