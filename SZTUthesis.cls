@@ -105,7 +105,8 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 % -------------------------------------------------------%
 \geometry{top=25.4mm,bottom=25.4mm,left=31mm,right=31mm}
 % 给页眉留足空间（否则会有 \headheight is too small的warning）
-\setlength{\headheight}{14.5pt}
+\setlength{\headheight}{25pt}
+\setlength{\headsep}{13pt}
 % “磅”是衡量印刷字体大小的单位,约等于七十二分之一英寸。
 % 而 1英寸＝25.4毫米，则1磅＝25.4/72≈0.353毫米。
 % 磅和 LaTeX的 pt- points (大约 1/72 inch) 是一致的。
@@ -233,9 +234,9 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
             \zihao{3} \heiti
             \begin{tabular}{ll}
                 \makebox[5em][s]{姓名}      & \parbox[t]{14em}{\bfseries \kaishu \uline{\centering \hfill \@author \hfill}} \\
-                \makebox[5em][s]{学院}      & \parbox[t]{14em}{\bfseries \kaishu \uline{\centering \hfill \@department \hfill}} \\
-                \makebox[5em][s]{专业}      & \parbox[t]{14em}{\bfseries \kaishu \uline{\centering \hfill \@priormajor \hfill}} \\
                 \makebox[5em][s]{学号}      & \parbox[t]{14em}{\bfseries \kaishu \uline{\centering \hfill \@studentid \hfill}} \\
+                \makebox[5em][s]{专业}      & \parbox[t]{14em}{\bfseries \kaishu \uline{\centering \hfill \@priormajor \hfill}} \\
+                \makebox[5em][s]{学院}      & \parbox[t]{14em}{\bfseries \kaishu \uline{\centering \hfill \@department \hfill}} \\
                 \makebox[5em][s]{指导教师}  & \parbox[t]{14em}{\bfseries \kaishu \uline{\centering \hfill \@supervisor \hfill}} \\
                 \makebox[5em][s]{职称}      & \parbox[t]{14em}{\bfseries \kaishu \uline{\centering \hfill \@supervisortitle \hfill}} \\
                 \makebox[5em][s]{提交日期}   & \parbox[t]{14em}{\bfseries \kaishu \uline{\centering \hfill \@thesisdate \hfill}} \\
@@ -296,13 +297,13 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 %               {before-code}%定义标题前的内容
 %               [after-code]%定义标题后的内容
 \newcommand{\sectionbreak}{\clearpage}  % 大章前分页
-\titleformat{\section}{\zihao{-2}\centering \bfseries \heiti}{\thesection}{1em}{}
+\titleformat{\section}{\zihao{-2}\centering \bfseries \heiti}{\thesection.}{0.5em}{}
 \titleformat{\subsection}{\zihao{3} \bfseries \heiti}{\thesubsection}{1em}{}
-\titleformat{\subsubsection}{\zihao{-3} \bfseries \heiti}{\thesubsubsection}{1em}{}
-% 设置章节标题的段间距，默认0.5段间距足够了，去掉章节标题自带的段间距
-\titlespacing{\section}{0pt}{0pt}{0pt}%{0.3em}{0.3em}
-\titlespacing{\subsection}{0pt}{0pt}{0pt}%{0.3em}{0.3em}
-\titlespacing{\subsubsection}{0pt}{0pt}{0pt}%{0.3em}{0.3em}
+\titleformat{\subsubsection}{\zihao{4} \bfseries \heiti}{\thesubsubsection}{1em}{}
+% 按学校格式范例给标题保留少量段前段后距离
+\titlespacing{\section}{0pt}{0pt}{0.25\baselineskip}
+\titlespacing{\subsection}{0pt}{0.35\baselineskip}{0.25\baselineskip}
+\titlespacing{\subsubsection}{0pt}{0.40\baselineskip}{0.30\baselineskip}
 % 定义在目录中的格式
 % \titlecontents{标题名}
 %               [左间距]
@@ -313,19 +314,19 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 \titlecontents{section}
               [0.75em] % 按样例目录左侧是和前置部分文字左侧对齐的
               {\zihao{4} \songti}
-              {\contentslabel {1em}}
+              {\contentslabel[\thecontentslabel.]{1.25em}}
               {\hspace*{-1em}}
               {\titlerule*[0.5pc]{.}\contentspage}
 
 \titlecontents{subsection}
-    [2.5em]
+    [3.5em]
     {\zihao{4} \songti} % note that 3.8 = 1.5 + 2.3
     {\contentslabel{2.2em}}
     {\hspace*{-3em}}
     {\titlerule*[0.5pc]{.}\contentspage}
 
 \titlecontents{subsubsection}
-    [4em]
+    [6.5em]
     {\zihao{4} \songti} % note that 3.8 = 1.5 + 2.3
     {\contentslabel{3.0em}}
     {\hspace*{-5em}}
@@ -344,7 +345,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 \newcommand{\setheader}{
     \pagestyle{fancy}
     \fancyhf{}
-    \fancyhead[C]{\songti \zihao{-5} 深圳技术大学本科毕业论文— \titlecnSingleLine }
+    \fancyhead[C]{\raisebox{4.5pt}{\songti \zihao{-5} 深圳技术大学本科毕业论文(设计)\hspace{0.5em}——\hspace{0.5em}\titlecnSingleLine }}
 }
 % 摘要页码格式
 \newcommand{\setabstractfooter}{
@@ -356,7 +357,10 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 \newcommand{\setfooter}{
     \setcounter{page}{1} % 重置页码编号
     \pagenumbering{arabic}
+    \fancyhf{}
+    \fancyhead[C]{\raisebox{4.5pt}{\songti \zihao{-5} 深圳技术大学本科毕业论文(设计)\hspace{0.5em}——\hspace{0.5em}\titlecnSingleLine }}
     \fancyfoot[C]{\zihao{-5} 第 \thepage\ 页，共 \pageref{LastPage}\ 页}
+    \renewcommand{\headrulewidth}{1pt} % 恢复页眉线
 }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 4. 中文摘要
@@ -558,7 +562,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 
 % 6. 参考文献 %
 % ------------------------------------------------------%
-% 学校《撰写规范》对「注释与参考文献」条目的字体、行距另有说明；本模板中 \setreference 使用小二号黑体居中标题、五号楷体文献表（与规范文本可能不完全一致，按需自行改 cls）。
+% 参考文献按 20260323 格式范文设置为五号楷体。
 \newcommand{\setreference}
 {
     \setlength{\bibsep}{2ex} % 参考文献条目间距
@@ -569,9 +573,11 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
     % { \zihao{-2} \bfseries \heiti 参考文献 \par}
     \phantomsection % 使得hyperref目录能够跳转到正确的位置
     \addcontentsline{toc}{section}{参考文献} % 由于参考文献不是section，这句把参考文献加入目录
-	\zihao{5} \kaishu
-	\bibliographystyle{gbt7714-numerical}
-    \bibliography{thesis-references}
+    {
+        \zihao{5}\kaishu
+        \bibliographystyle{gbt7714-numerical}
+        \bibliography{thesis-references}
+    }
     \newpage
     
     % % 改回section样式 
