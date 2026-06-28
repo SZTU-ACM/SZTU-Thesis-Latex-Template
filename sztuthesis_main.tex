@@ -6,7 +6,9 @@
 \setstretch{1.5}
 \hypersetup{
 colorlinks=true,
-linkcolor=black
+linkcolor=black,
+citecolor=black,
+urlcolor=black
 }
 
 \newcommand\pkg[1]{\texttt{#1}\textsuperscript{\sffamily PKG}}
@@ -66,6 +68,8 @@ linkcolor=black
 \numberwithin{table}{section}
 \renewcommand{\thefigure}{\thesection-\arabic{figure}}
 \renewcommand{\thetable}{\thesection-\arabic{table}}
+\renewcommand{\theequation}{\thesection-\arabic{equation}}
+\renewcommand{\thealgorithm}{\thesection-\arabic{algorithm}}
 
 \begin{document}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
