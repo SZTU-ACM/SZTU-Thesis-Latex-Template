@@ -105,7 +105,8 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 % -------------------------------------------------------%
 \geometry{top=25.4mm,bottom=25.4mm,left=31mm,right=31mm}
 % 给页眉留足空间（否则会有 \headheight is too small的warning）
-\setlength{\headheight}{14.5pt}
+\setlength{\headheight}{25pt}
+\setlength{\headsep}{13pt}
 % “磅”是衡量印刷字体大小的单位,约等于七十二分之一英寸。
 % 而 1英寸＝25.4毫米，则1磅＝25.4/72≈0.353毫米。
 % 磅和 LaTeX的 pt- points (大约 1/72 inch) 是一致的。
@@ -233,9 +234,9 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
             \zihao{3} \heiti
             \begin{tabular}{ll}
                 \makebox[5em][s]{姓名}      & \parbox[t]{14em}{\bfseries \kaishu \uline{\centering \hfill \@author \hfill}} \\
-                \makebox[5em][s]{学院}      & \parbox[t]{14em}{\bfseries \kaishu \uline{\centering \hfill \@department \hfill}} \\
-                \makebox[5em][s]{专业}      & \parbox[t]{14em}{\bfseries \kaishu \uline{\centering \hfill \@priormajor \hfill}} \\
                 \makebox[5em][s]{学号}      & \parbox[t]{14em}{\bfseries \kaishu \uline{\centering \hfill \@studentid \hfill}} \\
+                \makebox[5em][s]{专业}      & \parbox[t]{14em}{\bfseries \kaishu \uline{\centering \hfill \@priormajor \hfill}} \\
+                \makebox[5em][s]{学院}      & \parbox[t]{14em}{\bfseries \kaishu \uline{\centering \hfill \@department \hfill}} \\
                 \makebox[5em][s]{指导教师}  & \parbox[t]{14em}{\bfseries \kaishu \uline{\centering \hfill \@supervisor \hfill}} \\
                 \makebox[5em][s]{职称}      & \parbox[t]{14em}{\bfseries \kaishu \uline{\centering \hfill \@supervisortitle \hfill}} \\
                 \makebox[5em][s]{提交日期}   & \parbox[t]{14em}{\bfseries \kaishu \uline{\centering \hfill \@thesisdate \hfill}} \\
@@ -344,7 +345,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 \newcommand{\setheader}{
     \pagestyle{fancy}
     \fancyhf{}
-    \fancyhead[C]{\songti \zihao{-5} 深圳技术大学本科毕业论文— \titlecnSingleLine }
+    \fancyhead[C]{\raisebox{4.5pt}{\songti \zihao{-5} 深圳技术大学本科毕业论文(设计)\hspace{0.5em}——\hspace{0.5em}\titlecnSingleLine }}
 }
 % 摘要页码格式
 \newcommand{\setabstractfooter}{
@@ -356,7 +357,10 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 \newcommand{\setfooter}{
     \setcounter{page}{1} % 重置页码编号
     \pagenumbering{arabic}
+    \fancyhf{}
+    \fancyhead[C]{\raisebox{4.5pt}{\songti \zihao{-5} 深圳技术大学本科毕业论文(设计)\hspace{0.5em}——\hspace{0.5em}\titlecnSingleLine }}
     \fancyfoot[C]{\zihao{-5} 第 \thepage\ 页，共 \pageref{LastPage}\ 页}
+    \renewcommand{\headrulewidth}{1pt} % 恢复页眉线
 }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 4. 中文摘要
