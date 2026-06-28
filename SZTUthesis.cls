@@ -296,13 +296,13 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 %               {before-code}%定义标题前的内容
 %               [after-code]%定义标题后的内容
 \newcommand{\sectionbreak}{\clearpage}  % 大章前分页
-\titleformat{\section}{\zihao{-2}\centering \bfseries \heiti}{\thesection}{1em}{}
+\titleformat{\section}{\zihao{-2}\centering \bfseries \heiti}{\thesection.}{0.5em}{}
 \titleformat{\subsection}{\zihao{3} \bfseries \heiti}{\thesubsection}{1em}{}
-\titleformat{\subsubsection}{\zihao{-3} \bfseries \heiti}{\thesubsubsection}{1em}{}
-% 设置章节标题的段间距，默认0.5段间距足够了，去掉章节标题自带的段间距
-\titlespacing{\section}{0pt}{0pt}{0pt}%{0.3em}{0.3em}
-\titlespacing{\subsection}{0pt}{0pt}{0pt}%{0.3em}{0.3em}
-\titlespacing{\subsubsection}{0pt}{0pt}{0pt}%{0.3em}{0.3em}
+\titleformat{\subsubsection}{\zihao{4} \bfseries \heiti}{\thesubsubsection}{1em}{}
+% 按学校格式范例给标题保留少量段前段后距离
+\titlespacing{\section}{0pt}{0pt}{0.25\baselineskip}
+\titlespacing{\subsection}{0pt}{0.35\baselineskip}{0.25\baselineskip}
+\titlespacing{\subsubsection}{0pt}{0.40\baselineskip}{0.30\baselineskip}
 % 定义在目录中的格式
 % \titlecontents{标题名}
 %               [左间距]
@@ -313,19 +313,19 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 \titlecontents{section}
               [0.75em] % 按样例目录左侧是和前置部分文字左侧对齐的
               {\zihao{4} \songti}
-              {\contentslabel {1em}}
+              {\contentslabel[\thecontentslabel.]{1.25em}}
               {\hspace*{-1em}}
               {\titlerule*[0.5pc]{.}\contentspage}
 
 \titlecontents{subsection}
-    [2.5em]
+    [3.5em]
     {\zihao{4} \songti} % note that 3.8 = 1.5 + 2.3
     {\contentslabel{2.2em}}
     {\hspace*{-3em}}
     {\titlerule*[0.5pc]{.}\contentspage}
 
 \titlecontents{subsubsection}
-    [4em]
+    [6.5em]
     {\zihao{4} \songti} % note that 3.8 = 1.5 + 2.3
     {\contentslabel{3.0em}}
     {\hspace*{-5em}}
@@ -558,7 +558,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 
 % 6. 参考文献 %
 % ------------------------------------------------------%
-% 学校《撰写规范》对「注释与参考文献」条目的字体、行距另有说明；本模板中 \setreference 使用小二号黑体居中标题、五号楷体文献表（与规范文本可能不完全一致，按需自行改 cls）。
+% 参考文献按 20260323 格式范文设置为五号楷体。
 \newcommand{\setreference}
 {
     \setlength{\bibsep}{2ex} % 参考文献条目间距
@@ -569,9 +569,11 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
     % { \zihao{-2} \bfseries \heiti 参考文献 \par}
     \phantomsection % 使得hyperref目录能够跳转到正确的位置
     \addcontentsline{toc}{section}{参考文献} % 由于参考文献不是section，这句把参考文献加入目录
-	\zihao{5} \kaishu
-	\bibliographystyle{gbt7714-numerical}
-    \bibliography{thesis-references}
+    {
+        \zihao{5}\kaishu
+        \bibliographystyle{gbt7714-numerical}
+        \bibliography{thesis-references}
+    }
     \newpage
     
     % % 改回section样式 
