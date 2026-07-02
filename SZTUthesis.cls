@@ -179,6 +179,8 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 \newcommand*{\supervisortitle}[1]{\gdef\@supervisortitle{#1}}           % 导师职称
 \newcommand*{\subsupervisor}[1]{\gdef\@subsupervisor{#1}}               % 副导师
 \newcommand*{\studentid}[1]{\gdef\@studentid{#1}}                       % 学号
+\newcommand*{\sztu@coverstyle}{default}                                % 封面字段顺序样式
+\newcommand*{\coverstyle}[1]{\gdef\sztu@coverstyle{#1}}                 % 可选值：default, hse
 
 \newcommand*{\clcnumber}[1]{\gdef\@clcnumber{#1}}                       % 中图分类号 Chinese Library Classification
 \newcommand*{\schoolcode}[1]{\gdef\@schoolcode{#1}}                     % 学校代码
@@ -203,6 +205,36 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 }
 
 % 以下为本科毕业论文（设计）封面所用字段与版式
+\newcommand{\sztu@coverfield}[2]{%
+    \makebox[5em][s]{#1} & \parbox[t]{14em}{\bfseries \kaishu \uline{\centering \hfill #2 \hfill}} \\
+}
+\newcommand{\sztu@coverfields@default}{%
+    \sztu@coverfield{姓名}{\@author}
+    \sztu@coverfield{学院}{\@department}
+    \sztu@coverfield{专业}{\@priormajor}
+    \sztu@coverfield{学号}{\@studentid}
+    \sztu@coverfield{指导教师}{\@supervisor}
+    \sztu@coverfield{职称}{\@supervisortitle}
+    \sztu@coverfield{提交日期}{\@thesisdate}
+}
+\newcommand{\sztu@coverfields@hse}{%
+    \sztu@coverfield{姓名}{\@author}
+    \sztu@coverfield{学号}{\@studentid}
+    \sztu@coverfield{专业}{\@priormajor}
+    \sztu@coverfield{学院}{\@department}
+    \sztu@coverfield{指导教师}{\@supervisor}
+    \sztu@coverfield{职称}{\@supervisortitle}
+    \sztu@coverfield{提交日期}{\@thesisdate}
+}
+\newcommand{\sztu@coverfields@HSE}{\sztu@coverfields@hse}
+\newcommand{\sztu@coverfields}{%
+    \ifcsname sztu@coverfields@\sztu@coverstyle\endcsname
+        \csname sztu@coverfields@\sztu@coverstyle\endcsname
+    \else
+        \ClassWarning{SZTUthesis}{Unknown coverstyle `\sztu@coverstyle'; using `default'}%
+        \sztu@coverfields@default
+    \fi
+}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 定义 \makecoverpage 实现封面的重新绘制
@@ -233,13 +265,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
         {
             \zihao{3} \heiti
             \begin{tabular}{ll}
-                \makebox[5em][s]{姓名}      & \parbox[t]{14em}{\bfseries \kaishu \uline{\centering \hfill \@author \hfill}} \\
-                \makebox[5em][s]{学号}      & \parbox[t]{14em}{\bfseries \kaishu \uline{\centering \hfill \@studentid \hfill}} \\
-                \makebox[5em][s]{专业}      & \parbox[t]{14em}{\bfseries \kaishu \uline{\centering \hfill \@priormajor \hfill}} \\
-                \makebox[5em][s]{学院}      & \parbox[t]{14em}{\bfseries \kaishu \uline{\centering \hfill \@department \hfill}} \\
-                \makebox[5em][s]{指导教师}  & \parbox[t]{14em}{\bfseries \kaishu \uline{\centering \hfill \@supervisor \hfill}} \\
-                \makebox[5em][s]{职称}      & \parbox[t]{14em}{\bfseries \kaishu \uline{\centering \hfill \@supervisortitle \hfill}} \\
-                \makebox[5em][s]{提交日期}   & \parbox[t]{14em}{\bfseries \kaishu \uline{\centering \hfill \@thesisdate \hfill}} \\
+                \sztu@coverfields
             \end{tabular}
         }
         \par
