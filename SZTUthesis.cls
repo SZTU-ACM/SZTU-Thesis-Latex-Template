@@ -105,7 +105,8 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 % -------------------------------------------------------%
 \geometry{top=25.4mm,bottom=25.4mm,left=31mm,right=31mm}
 % 给页眉留足空间（否则会有 \headheight is too small的warning）
-\setlength{\headheight}{14.5pt}
+\setlength{\headheight}{25pt}
+\setlength{\headsep}{13pt}
 % “磅”是衡量印刷字体大小的单位,约等于七十二分之一英寸。
 % 而 1英寸＝25.4毫米，则1磅＝25.4/72≈0.353毫米。
 % 磅和 LaTeX的 pt- points (大约 1/72 inch) 是一致的。
@@ -178,6 +179,8 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 \newcommand*{\supervisortitle}[1]{\gdef\@supervisortitle{#1}}           % 导师职称
 \newcommand*{\subsupervisor}[1]{\gdef\@subsupervisor{#1}}               % 副导师
 \newcommand*{\studentid}[1]{\gdef\@studentid{#1}}                       % 学号
+\newcommand*{\sztu@coverstyle}{default}                                % 封面字段顺序样式
+\newcommand*{\coverstyle}[1]{\gdef\sztu@coverstyle{#1}}                 % 可选值：default, hse
 
 \newcommand*{\clcnumber}[1]{\gdef\@clcnumber{#1}}                       % 中图分类号 Chinese Library Classification
 \newcommand*{\schoolcode}[1]{\gdef\@schoolcode{#1}}                     % 学校代码
@@ -202,6 +205,36 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 }
 
 % 以下为本科毕业论文（设计）封面所用字段与版式
+\newcommand{\sztu@coverfield}[2]{%
+    \makebox[5em][s]{#1} & \parbox[t]{14em}{\bfseries \kaishu \uline{\centering \hfill #2 \hfill}} \\
+}
+\newcommand{\sztu@coverfields@default}{%
+    \sztu@coverfield{姓名}{\@author}
+    \sztu@coverfield{学院}{\@department}
+    \sztu@coverfield{专业}{\@priormajor}
+    \sztu@coverfield{学号}{\@studentid}
+    \sztu@coverfield{指导教师}{\@supervisor}
+    \sztu@coverfield{职称}{\@supervisortitle}
+    \sztu@coverfield{提交日期}{\@thesisdate}
+}
+\newcommand{\sztu@coverfields@hse}{%
+    \sztu@coverfield{姓名}{\@author}
+    \sztu@coverfield{学号}{\@studentid}
+    \sztu@coverfield{专业}{\@priormajor}
+    \sztu@coverfield{学院}{\@department}
+    \sztu@coverfield{指导教师}{\@supervisor}
+    \sztu@coverfield{职称}{\@supervisortitle}
+    \sztu@coverfield{提交日期}{\@thesisdate}
+}
+\newcommand{\sztu@coverfields@HSE}{\sztu@coverfields@hse}
+\newcommand{\sztu@coverfields}{%
+    \ifcsname sztu@coverfields@\sztu@coverstyle\endcsname
+        \csname sztu@coverfields@\sztu@coverstyle\endcsname
+    \else
+        \ClassWarning{SZTUthesis}{Unknown coverstyle `\sztu@coverstyle'; using `default'}%
+        \sztu@coverfields@default
+    \fi
+}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 定义 \makecoverpage 实现封面的重新绘制
@@ -232,13 +265,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
         {
             \zihao{3} \heiti
             \begin{tabular}{ll}
-                \makebox[5em][s]{姓名}      & \parbox[t]{14em}{\bfseries \kaishu \uline{\centering \hfill \@author \hfill}} \\
-                \makebox[5em][s]{学院}      & \parbox[t]{14em}{\bfseries \kaishu \uline{\centering \hfill \@department \hfill}} \\
-                \makebox[5em][s]{专业}      & \parbox[t]{14em}{\bfseries \kaishu \uline{\centering \hfill \@priormajor \hfill}} \\
-                \makebox[5em][s]{学号}      & \parbox[t]{14em}{\bfseries \kaishu \uline{\centering \hfill \@studentid \hfill}} \\
-                \makebox[5em][s]{指导教师}  & \parbox[t]{14em}{\bfseries \kaishu \uline{\centering \hfill \@supervisor \hfill}} \\
-                \makebox[5em][s]{职称}      & \parbox[t]{14em}{\bfseries \kaishu \uline{\centering \hfill \@supervisortitle \hfill}} \\
-                \makebox[5em][s]{提交日期}   & \parbox[t]{14em}{\bfseries \kaishu \uline{\centering \hfill \@thesisdate \hfill}} \\
+                \sztu@coverfields
             \end{tabular}
         }
         \par
@@ -344,7 +371,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 \newcommand{\setheader}{
     \pagestyle{fancy}
     \fancyhf{}
-    \fancyhead[C]{\songti \zihao{-5} 深圳技术大学本科毕业论文— \titlecnSingleLine }
+    \fancyhead[C]{\raisebox{4.5pt}{\songti \zihao{-5} 深圳技术大学本科毕业论文(设计)\hspace{0.5em}——\hspace{0.5em}\titlecnSingleLine }}
 }
 % 摘要页码格式
 \newcommand{\setabstractfooter}{
@@ -356,7 +383,10 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 \newcommand{\setfooter}{
     \setcounter{page}{1} % 重置页码编号
     \pagenumbering{arabic}
+    \fancyhf{}
+    \fancyhead[C]{\raisebox{4.5pt}{\songti \zihao{-5} 深圳技术大学本科毕业论文(设计)\hspace{0.5em}——\hspace{0.5em}\titlecnSingleLine }}
     \fancyfoot[C]{\zihao{-5} 第 \thepage\ 页，共 \pageref{LastPage}\ 页}
+    \renewcommand{\headrulewidth}{1pt} % 恢复页眉线
 }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 4. 中文摘要
