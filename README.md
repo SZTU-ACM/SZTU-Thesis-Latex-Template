@@ -20,7 +20,7 @@ LaTeX利用设置好的模板，可以编译为格式统一的pdf。
 
 本项目的目的是为了创建一个符合深圳技术大学毕业论文（设计）撰写规范的TeX模板，解决学位论文撰写时格式调整的痛点。
 
-本模板依照[本科论文格式范例2024](./official_documents/本科论文格式范例2024.docx)编写。
+本模板当前收录了[本科论文格式范例2026](./official_documents/本科论文格式范例2026.docx)与[本科生毕业论文（设计）撰写规范及要求](./official_documents/本科生毕业论文（设计）撰写规范及要求.doc)；模板与当年正式要求的符合性仍需逐项核验。
 
 ## 主要内容
 
@@ -77,6 +77,16 @@ LaTeX利用设置好的模板，可以编译为格式统一的pdf。
 放图片，模板已经配置了相对路径，所以在文中插图片时，直接用images目录下的相对路径即可，比如`images/sztu.png`，在正文中插入只需要`sztu.png`。
 
 ## 编译
+
+### macOS
+
+安装 MacTeX/TeX Live 后，可在 Texifier 中选择 XeLaTeX，或在仓库根目录执行：
+
+```bash
+bash build.sh --clean
+```
+
+模板会优先使用 Windows 规范字体；在 macOS 上缺少对应字体时，会回退到系统中文字体或 TeX Live 自带的 Fandol 字体。
 
 ### Linux
 
