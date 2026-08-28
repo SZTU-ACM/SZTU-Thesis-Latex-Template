@@ -96,10 +96,42 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 % \RequirePackage{natbib} % gbt7714.sty已经包含了natbib宏包
 \RequirePackage{gbt7714}
 
-% 处理ctex宏包默认字体warning问题 %
-\setCJKmainfont[AutoFakeBold]{SimSun}
-\setCJKsansfont[AutoFakeBold]{SimHei}
-\setCJKmonofont[AutoFakeBold]{FangSong}
+% 跨平台字体选择：优先使用 Windows 规范字体，其次使用 macOS
+% 对应字体，最后回退到 TeX Live 自带的 Fandol 字体。这样无需在
+% 仓库中分发微软字体，也能在 macOS / Windows / Linux 上编译。
+\IfFontExistsTF{SimSun}
+  {\def\sztu@font@cjkmain{SimSun}}
+  {\IfFontExistsTF{Songti SC}
+    {\def\sztu@font@cjkmain{Songti SC}}
+    {\IfFontExistsTF{STSong}
+      {\def\sztu@font@cjkmain{STSong}}
+      {\def\sztu@font@cjkmain{FandolSong-Regular.otf}}}}
+\IfFontExistsTF{SimHei}
+  {\def\sztu@font@cjksans{SimHei}}
+  {\IfFontExistsTF{Heiti SC}
+    {\def\sztu@font@cjksans{Heiti SC}}
+    {\IfFontExistsTF{PingFang SC}
+      {\def\sztu@font@cjksans{PingFang SC}}
+      {\def\sztu@font@cjksans{FandolHei-Regular.otf}}}}
+\IfFontExistsTF{FangSong}
+  {\def\sztu@font@cjkmono{FangSong}}
+  {\IfFontExistsTF{STFangsong}
+    {\def\sztu@font@cjkmono{STFangsong}}
+    {\def\sztu@font@cjkmono{FandolFang-Regular.otf}}}
+\IfFontExistsTF{KaiTi}
+  {\def\sztu@font@cjkkai{KaiTi}}
+  {\IfFontExistsTF{Kaiti SC}
+    {\def\sztu@font@cjkkai{Kaiti SC}}
+    {\IfFontExistsTF{STKaiti}
+      {\def\sztu@font@cjkkai{STKaiti}}
+      {\def\sztu@font@cjkkai{FandolKai-Regular.otf}}}}
+
+\setCJKmainfont[AutoFakeBold]{\sztu@font@cjkmain}
+\setCJKsansfont[AutoFakeBold]{\sztu@font@cjksans}
+\setCJKmonofont[AutoFakeBold]{\sztu@font@cjkmono}
+\ClassInfo{SZTUthesis}{CJK fonts: main=\sztu@font@cjkmain,
+  sans=\sztu@font@cjksans, mono=\sztu@font@cjkmono,
+  kai=\sztu@font@cjkkai}
 
 % 页面布局 %
 % -------------------------------------------------------%
@@ -116,9 +148,15 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 
 % 设置字体 %
 % -------------------------------------------------------%
-\setmainfont{Times New Roman}
-\setmonofont{Courier New}
-\setsansfont{Arial}
+\IfFontExistsTF{Times New Roman}
+  {\setmainfont{Times New Roman}}
+  {\setmainfont{TeX Gyre Termes}}
+\IfFontExistsTF{Courier New}
+  {\setmonofont{Courier New}}
+  {\setmonofont{TeX Gyre Cursor}}
+\IfFontExistsTF{Arial}
+  {\setsansfont{Arial}}
+  {\setsansfont{TeX Gyre Heros}}
 \renewcommand\normalsize{%
 	\@setfontsize\normalsize{12pt}{14.45}%
 	\abovedisplayskip 12\p@ \@plus3\p@ \@minus7\p@
@@ -129,11 +167,11 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 % 重定义ctex定义好的宋体和黑体，以支持伪加粗AutoFakeBold
 % 即支持类似word里的给黑体、宋体等中文字体加粗的操作，用\bfseries
 \let\heiti\relax
-\newCJKfontfamily[hei]\heiti{SimHei}[AutoFakeBold]
+\newCJKfontfamily[hei]\heiti{\sztu@font@cjksans}[AutoFakeBold]
 \let\songti\relax
-\newCJKfontfamily[song]\songti{SimSun}[AutoFakeBold]
+\newCJKfontfamily[song]\songti{\sztu@font@cjkmain}[AutoFakeBold]
 \let\kaishu\relax
-\newCJKfontfamily[kai]\kaishu{KaiTi}[AutoFakeBold]
+\newCJKfontfamily[kai]\kaishu{\sztu@font@cjkkai}[AutoFakeBold]
 
 \let\huawenxingkai\relax
 \newCJKfontfamily[hwxk]\huawenxingkai{STXingkai.ttf}[AutoFakeBold]
